@@ -13,6 +13,8 @@ public:
 	static const int MAX = 100;
 	static const int NULO = 0;
 
+	TCanvas* canvas;
+
 	T Elementos[MAX];
 	int Longitud;
 
@@ -30,7 +32,11 @@ public:
 	virtual void Inserta_ultimo( T elemento ) = 0;
 	virtual void Suprime( Direccion direccion ) = 0;
 	virtual void Modifica( Direccion direccion, T elemento) = 0;
-//	virtual void MostrarLista( ) = 0;
+	virtual void MostrarLista( ) = 0;
+
+	void setCanvas( TCanvas* canvas ){
+        this->canvas = canvas;
+	}
 
 	virtual ~ITDALista() {}  // Destructor virtual
 };

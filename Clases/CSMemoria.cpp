@@ -7,7 +7,7 @@
 #pragma package(smart_init)
 
 // Constructor
-CSMemoria::CSMemoria( TipoDato valueDefault ) {
+CSMemoria::CSMemoria( TipoDato valueDefault, TCanvas* canvas ) {
 	for( int i = 0; i < Max(); i++ ) {
         MEM[i].dir 	= i;
 		MEM[i].link = i +1;
@@ -15,7 +15,8 @@ CSMemoria::CSMemoria( TipoDato valueDefault ) {
 	}
 
 	MEM[Max() - 1].link = Nulo();
-    setLibre(0);
+	setLibre(0);
+    setCanvas( canvas );
 }
 
 int CSMemoria::NewEspacio(AnsiString cadena) {
@@ -99,4 +100,26 @@ bool CSMemoria::DirLibre(int dir) {
 	}
 
 	return c;
+}
+
+void CSMemoria::MostrarMemoria(){
+	int x1 = 500; int y1 = 10;
+	int y2 = HeightFields + y1;
+
+	// RGB BGR
+	TColor colorTextHeader = (TColor)0x0000ff;
+
+	DibujarField( x1, y1, clBtnFace, WidthDir, "DIR", colorTextHeader);
+	DibujarField( x1, y1, clBtnFace, WidthDato, "DATO", colorTextHeader);
+	DibujarField( x1, y1, clBtnFace, WidthId, "ID", colorTextHeader);
+	DibujarField( x1, y1, clBtnFace, WidthLink, "LINK", colorTextHeader);
+
+	if(pagStart == 0 || pagEnd == 0) return ShowMessage("No hay valor en inicio y fin");
+	if( !(pagStart > 0 && pagEnd <= Max() ) ) return ShowMessage("Fuera de rango");
+
+	x1 = 500; y1 = y2;
+	for( int i = pagStart - 1; i < pagEnd; i++ ) {
+		DibujarRow(x1, y1, i);
+		x1 = 500;
+	}
 }

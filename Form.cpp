@@ -36,7 +36,7 @@ void __fastcall TForm2::BtnCreateMemoriaClick(TObject *Sender)
 bool TForm2::CreateMemoria(){
 	if(MemoriaCreada) return false;
 
-	SMEMORIA = new CSMemoria( 0 );
+	SMEMORIA = new CSMemoria( 0, Canvas );
 	MemoriaCreada = true;
 	UpdateLibreDisponible();
 
@@ -120,15 +120,15 @@ void __fastcall TForm2::BtnPonerDatoClick(TObject *Sender)
 
 void __fastcall TForm2::BtnMostrarMemoriaClick(TObject *Sender)
 {
-    if(!MemoriaCreada) return ShowMessage("No se creo ninguna memoria");
+	if(!MemoriaCreada) return ShowMessage("No se creo ninguna memoria");
 
 	int inicio = StrToInt(EInicioMemoria->Text);
 	int fin    = StrToInt(EFinMemoria->Text);
 
-	if( !(inicio > 0 && fin <= SMEMORIA->Max() ) ) return ShowMessage("Fuera de rango");
-
-	DibujarMemoria( inicio, fin );
-    UpdateLibreDisponible();
+	SMEMORIA->pagStart = inicio;
+	SMEMORIA->pagEnd = fin;
+	Repaint();
+	SMEMORIA->MostrarMemoria();
 }
 
 void TForm2::UpdateLibreDisponible(){
@@ -155,14 +155,14 @@ void __fastcall TForm2::BtnCrearListaClick(TObject *Sender)
 	TipoLista = StrToInt(dato);
 
 	if( TipoLista == 1){
-		TDALISTA = new CListaVector();
+		TDALISTA = new CListaVector( Canvas );
 		ListaCreada = true;
 		LabelTipoLista->Caption = "Lista con vectores";
 		return;
 	}
 	if( TipoLista == 2){
 		CreateMemoria();
-		TDALISTA = new CListaSMemoria( SMEMORIA );
+		TDALISTA = new CListaSMemoria( SMEMORIA, Canvas );
 		ListaCreada = true;
 		LabelTipoLista->Caption = "Lista con Memoria";
 		return;
@@ -179,6 +179,8 @@ void __fastcall TForm2::BtnCrearListaClick(TObject *Sender)
 
 void __fastcall TForm2::BtnInsertInicioClick(TObject *Sender)
 {
+	if(!ListaCreada) return ShowMessage("Ninguna lista creada");
+
 	AnsiString valueInicio = EListaInsertInicio->Text.Trim();
 	if( valueInicio.IsEmpty() ){
         ShowMessage("Ingrese un valor inicial");
@@ -191,8 +193,9 @@ void __fastcall TForm2::BtnInsertInicioClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::BtnInsertFinClick(TObject *Sender)
-{
+void __fastcall TForm2::BtnInsertFinClick(TObject *Sender){
+	if(!ListaCreada) return ShowMessage("Ninguna lista creada");
+
 	AnsiString valueFin = EListaInsertFin->Text.Trim();
 	if( valueFin.IsEmpty() ){
 		ShowMessage("Ingrese un valor final");
@@ -205,5 +208,12 @@ void __fastcall TForm2::BtnInsertFinClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm2::BtnMostrarListaClick(TObject *Sender)
+{
+	if(!ListaCreada) return ShowMessage("Ninguna lista creada");
 
+	Repaint();
+    TDALISTA->MostrarLista();
+}
+//---------------------------------------------------------------------------
 

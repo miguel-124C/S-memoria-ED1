@@ -6,22 +6,23 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-CListaSMemoria::CListaSMemoria( ISMemoria<TipoDato>* memoria ){
+CListaSMemoria::CListaSMemoria( ISMemoria<TipoDato>* memoria, TCanvas* canvas ){
+	setCanvas(canvas);
 	Memoria = memoria;
 }
 
 void CListaSMemoria::Crear(){
 	Longitud = 0;
-    PtrElementos = NULO;
+    PtrElementos = -1;
 }
 
 Direccion CListaSMemoria::Fin(){
-	if( Vacia() ) return NULO; // llamar a exception listavacia;
+	if( Vacia() ) return -1; // llamar a exception listavacia;
 
 	TipoDato x = PtrElementos;
     TipoDato PtrFin;
 
-	while( x != NULO ){
+	while( x != -1 ){
 		 PtrFin = x;
 		 x = Memoria->ObtieneDato( x, "Sig" );
 	}
@@ -32,7 +33,7 @@ Direccion CListaSMemoria::Fin(){
 Direccion CListaSMemoria::Primero(){
 	if( !Vacia() ) return PtrElementos; // Apunta primer elemento
 
-    return NULO; // Llamar exception ListaVacia
+	return -1; // Llamar exception ListaVacia
 }
 
 Direccion CListaSMemoria::Siguiente( Direccion direccion ){
@@ -47,9 +48,9 @@ Direccion CListaSMemoria::Anterior( Direccion direccion ){
 	if( direccion == Primero() ) return 0; // Llamar exception DireccionPrimeraErr
 
 	TipoDato x = PtrElementos;
-	TipoDato anterior = NULO;
+	TipoDato anterior = -1;
 
-	while( x != NULO ){
+	while( x != -1 ){
 		if( x == direccion ) return anterior;
 
 		anterior = x;
@@ -155,4 +156,8 @@ void CListaSMemoria::Suprime( Direccion direccion ){
 void CListaSMemoria::Modifica( Direccion direccion, TipoDato elemento){
 	if( Vacia() ) return; // llamar a exception listavacia
 	Memoria->PonerDato(direccion,"Elemento", elemento);
+}
+
+void CListaSMemoria::MostrarLista( ){
+
 }

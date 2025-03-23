@@ -21,7 +21,7 @@ public:
 	ISMemoria<TipoDato>* Memoria;
 	Direccion PtrElementos;
 
-    CListaSMemoria( ISMemoria<TipoDato>* memoria );
+    CListaSMemoria( ISMemoria<TipoDato>* memoria, TCanvas* canvas );
 
 	void Crear() override;
 	Direccion Fin() override;
@@ -36,6 +36,8 @@ public:
 	void Inserta_ultimo( TipoDato elemento ) override;
 	void Suprime( Direccion direccion ) override;
 	void Modifica( Direccion direccion, TipoDato elemento) override;
+
+	void MostrarLista( ) override;
 };
 
 #endif

@@ -6,6 +6,10 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
+CListaVector::CListaVector( TCanvas* canvas ){
+	setCanvas(canvas);
+}
+
 void CListaVector::Crear(){
     Longitud = 0;
 }
@@ -64,11 +68,11 @@ void CListaVector::Inserta( Direccion direccion, TipoDato elemento ){
 void CListaVector::Inserta_primero( TipoDato elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
-	for( int i = (Longitud + 1); i >= 2; i-- ){
+	for( int i = Longitud; i >= 1; i-- ){
 		Elementos[i] = Elementos[i - 1];
 	}
 
-	Elementos[1] = elemento;
+	Elementos[0] = elemento;
     Longitud = Longitud + 1;
 }
 
@@ -76,7 +80,7 @@ void CListaVector::Inserta_ultimo( TipoDato elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
 	Longitud = Longitud + 1;
-	Elementos[Longitud] = elemento;
+	Elementos[Longitud - 1] = elemento;
 }
 
 void CListaVector::Suprime( Direccion direccion ){
@@ -95,4 +99,21 @@ void CListaVector::Modifica( Direccion direccion, TipoDato elemento){
 	if( !(direccion >= 1 && direccion <= Longitud) ) return; // Llamar exception DireccionErr
 
 	Elementos[direccion] = elemento;
+}
+
+void CListaVector::MostrarLista( ){
+
+	for( int i = 0; i < Longitud; i++ ){
+    	int x2 = X1 + WidthField;
+        int y2 = Y1 + HeightField;
+		canvas->Brush->Color = (TColor)0xffffff;
+		canvas->Rectangle(X1, Y1, x2, y2);
+
+		canvas->Font->Size = 16;
+		canvas->TextOut( X1 + 5, Y1 + 5, Elementos[i] );
+
+		X1 += WidthField;
+	}
+
+	X1 = 50;
 }

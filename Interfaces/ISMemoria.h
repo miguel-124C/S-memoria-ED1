@@ -19,8 +19,14 @@ private:
 
 	int libre;
 public:
-    // Propiedades
+	// Propiedades
 	NodoM<T> MEM[MAX];
+
+	TCanvas* canvas;
+
+	//RangoPaginado
+	int pagStart = 0;
+    int pagEnd   = 0;
 
 	// Getters y setters
 	int getLibre() const { return libre; }
@@ -38,6 +44,12 @@ public:
     virtual int EspacioDisponible() = 0;
     virtual int EspacioOcupado() = 0;
 	virtual bool DirLibre(int dir) = 0;
+
+	virtual void MostrarMemoria( ) = 0;
+
+	void setCanvas( TCanvas* canvas ){
+        this->canvas = canvas;
+	}
 
 	// "nombre,correo,contra" => 3 ids
 	int NumeroIds( AnsiString cadena ){

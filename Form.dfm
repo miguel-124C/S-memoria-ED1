@@ -14,8 +14,8 @@ object Form2: TForm2
   object LabelTipoLista: TLabel
     Left = 8
     Top = 288
-    Width = 409
-    Height = 50
+    Width = 172
+    Height = 32
     Alignment = taCenter
     Caption = 'Lista no creada'
     Color = clHotLight
@@ -185,6 +185,7 @@ object Form2: TForm2
     Height = 41
     Caption = 'MostrarLista'
     TabOrder = 15
+    OnClick = BtnMostrarListaClick
   end
   object EListaInsertInicio: TEdit
     Left = 111
