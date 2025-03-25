@@ -7,7 +7,7 @@
 #pragma package(smart_init)
 
 // Constructor
-CSMemoria::CSMemoria( TipoDato valueDefault, TCanvas* canvas ) {
+CSMemoria::CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas ) {
 	for( int i = 0; i < Max(); i++ ) {
         MEM[i].dir 	= i;
 		MEM[i].link = i +1;
@@ -44,7 +44,7 @@ void CSMemoria::DeleteEspacio(int dir) {
     setLibre( dir );
 }
 
-void CSMemoria::PonerDato(int dir, AnsiString cadena_id, TipoDato valor) {
+void CSMemoria::PonerDato(int dir, AnsiString cadena_id, TipoDatoMem valor) {
 	int z = dir;
 	bool idEncontrado = false;
 	while( z != -1 ){
@@ -58,8 +58,8 @@ void CSMemoria::PonerDato(int dir, AnsiString cadena_id, TipoDato valor) {
     if( !idEncontrado ) ShowMessage("No se pudo añadir el dato, ya que no existe un espacio en memoria llamado " + cadena_id);
 }
 
-TipoDato CSMemoria::ObtieneDato(int dir, AnsiString cadena_id) {
-	TipoDato dato;
+TipoDatoMem CSMemoria::ObtieneDato(int dir, AnsiString cadena_id) {
+	TipoDatoMem dato;
 	int z = dir;
 	while( z != -1 ){
 		if( MEM[z].id == cadena_id ){

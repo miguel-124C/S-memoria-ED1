@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-CListaSMemoria::CListaSMemoria( ISMemoria<TipoDato>* memoria, TCanvas* canvas ){
+CListaSMemoria::CListaSMemoria( ISMemoria<TipoDatoListMem>* memoria, TCanvas* canvas ){
 	setCanvas(canvas);
 	Memoria = memoria;
 }
@@ -19,8 +19,8 @@ void CListaSMemoria::Crear(){
 Direccion CListaSMemoria::Fin(){
 	if( Vacia() ) return -1; // llamar a exception listavacia;
 
-	TipoDato x = PtrElementos;
-    TipoDato PtrFin;
+	TipoDatoListMem x = PtrElementos;
+	TipoDatoListMem PtrFin;
 
 	while( x != -1 ){
 		 PtrFin = x;
@@ -47,8 +47,8 @@ Direccion CListaSMemoria::Anterior( Direccion direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 	if( direccion == Primero() ) return 0; // Llamar exception DireccionPrimeraErr
 
-	TipoDato x = PtrElementos;
-	TipoDato anterior = -1;
+	TipoDatoListMem x = PtrElementos;
+	TipoDatoListMem anterior = -1;
 
 	while( x != -1 ){
 		if( x == direccion ) return anterior;
@@ -64,7 +64,7 @@ bool CListaSMemoria::Vacia(){
 	return Longitud == 0;
 }
 
-TipoDato CListaSMemoria::Recupera( Direccion direccion ){
+TipoDatoListMem CListaSMemoria::Recupera( Direccion direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 
     return Memoria->ObtieneDato( direccion, "Elemento"  );
@@ -74,7 +74,7 @@ int CListaSMemoria::GetLongitud (){
     return Longitud;
 }
 
-void CListaSMemoria::Inserta( Direccion direccion, TipoDato elemento ){
+void CListaSMemoria::Inserta( Direccion direccion, TipoDatoListMem elemento ){
 	// X tendria direccion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 	int anterior;
@@ -102,7 +102,7 @@ void CListaSMemoria::Inserta( Direccion direccion, TipoDato elemento ){
     return; // llamar a exception existeespaciomemoria
 }
 
-void CListaSMemoria::Inserta_primero( TipoDato elemento ){
+void CListaSMemoria::Inserta_primero( TipoDatoListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -116,7 +116,7 @@ void CListaSMemoria::Inserta_primero( TipoDato elemento ){
 	}
 }
 
-void CListaSMemoria::Inserta_ultimo( TipoDato elemento ){
+void CListaSMemoria::Inserta_ultimo( TipoDatoListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -153,7 +153,7 @@ void CListaSMemoria::Suprime( Direccion direccion ){
     Longitud = Longitud - 1;
 }
 
-void CListaSMemoria::Modifica( Direccion direccion, TipoDato elemento){
+void CListaSMemoria::Modifica( Direccion direccion, TipoDatoListMem elemento){
 	if( Vacia() ) return; // llamar a exception listavacia
 	Memoria->PonerDato(direccion,"Elemento", elemento);
 }

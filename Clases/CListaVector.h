@@ -6,16 +6,16 @@
 
 #include "../Interfaces/ITDALista.h"
 
-typedef int TipoDato;
+typedef int TipoDatoListVec;
 
-class CListaVector : public ITDALista<TipoDato> {
+class CListaVector : public ITDALista<TipoDatoListVec> {
 public:
 
 	// Propiedades
 	static const int MAX = 100;
 	static const int NULO = 0;
 
-	TipoDato Elementos[MAX];
+	TipoDatoListVec Elementos[MAX];
 
     CListaVector( TCanvas* canvas );
 
@@ -25,13 +25,13 @@ public:
 	Direccion Siguiente( Direccion direccion ) override;
 	Direccion Anterior( Direccion direccion ) override;
 	bool Vacia() override;
-	TipoDato Recupera( Direccion direccion ) override;
+	TipoDatoListVec Recupera( Direccion direccion ) override;
 	int GetLongitud () override;
-	void Inserta( Direccion direccion, TipoDato elemento ) override;
-	void Inserta_primero( TipoDato elemento ) override;
-	void Inserta_ultimo( TipoDato elemento ) override;
+	void Inserta( Direccion direccion, TipoDatoListVec elemento ) override;
+	void Inserta_primero( TipoDatoListVec elemento ) override;
+	void Inserta_ultimo( TipoDatoListVec elemento ) override;
 	void Suprime( Direccion direccion ) override;
-	void Modifica( Direccion direccion, TipoDato elemento) override;
+	void Modifica( Direccion direccion, TipoDatoListVec elemento) override;
 
 	void MostrarLista( ) override;
 

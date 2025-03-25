@@ -42,7 +42,7 @@ bool CListaVector::Vacia(){
 	return Longitud == 0;
 }
 
-TipoDato CListaVector::Recupera( Direccion direccion ){
+TipoDatoListVec CListaVector::Recupera( Direccion direccion ){
 	if( Vacia() ) return NULO; // Llamar exception ListaVacia
 	if( !(direccion >= 1 && direccion <= Longitud) ) return NULO; // Llamar exception DireccionErr
 
@@ -53,7 +53,7 @@ int CListaVector::GetLongitud (){
     return Longitud;
 }
 
-void CListaVector::Inserta( Direccion direccion, TipoDato elemento ){
+void CListaVector::Inserta( Direccion direccion, TipoDatoListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 	if(!(direccion >= 1 && direccion <= Longitud)) return; // Llamar exception DireccionErr
 
@@ -65,7 +65,7 @@ void CListaVector::Inserta( Direccion direccion, TipoDato elemento ){
 	Longitud = Longitud + 1;
 }
 
-void CListaVector::Inserta_primero( TipoDato elemento ){
+void CListaVector::Inserta_primero( TipoDatoListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
 	for( int i = Longitud; i >= 1; i-- ){
@@ -76,7 +76,7 @@ void CListaVector::Inserta_primero( TipoDato elemento ){
     Longitud = Longitud + 1;
 }
 
-void CListaVector::Inserta_ultimo( TipoDato elemento ){
+void CListaVector::Inserta_ultimo( TipoDatoListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
 	Longitud = Longitud + 1;
@@ -94,7 +94,7 @@ void CListaVector::Suprime( Direccion direccion ){
 	Longitud = Longitud - 1;
 }
 
-void CListaVector::Modifica( Direccion direccion, TipoDato elemento){
+void CListaVector::Modifica( Direccion direccion, TipoDatoListVec elemento){
 	if( Vacia() ) return; // Llamar exception ListaVacia
 	if( !(direccion >= 1 && direccion <= Longitud) ) return; // Llamar exception DireccionErr
 

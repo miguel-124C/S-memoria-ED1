@@ -10,12 +10,9 @@ class ITDALista {
 private:
 public:
 	// Propiedades
-	static const int MAX = 100;
-	static const int NULO = 0;
 
 	TCanvas* canvas;
 
-	T Elementos[MAX];
 	int Longitud;
 
 	// Métodos
