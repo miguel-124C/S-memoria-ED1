@@ -54,8 +54,9 @@ private:	// User declarations
 	bool MemoriaCreada = false;
 	bool CreateMemoria();
 
-    // TDA Lista
-	ITDALista<int>* TDALISTA;
+	// TDA Lista
+    // <int, int> = <TipoDato, Direccion>
+	ITDALista<int, int>* TDALISTA;
     int TipoLista = 1; // 1 = ListaVectores | 2 = ListaMemoria | 3 = ListaPunteros
 	bool ListaCreada = false;
 
