@@ -9,8 +9,8 @@
 // Memoria
 #include "./Clases/CSMemoria.h"
 // Listas
-#include "./Clases/CListaVector.h"
-#include "./Clases/CListaSMemoria.h"
+#include "./Clases/Listas/CListaVector.h"
+#include "./Clases/Listas/CListaSMemoria.h"
 //-----------------------------------------------
 
 //---------------------------------------------------------------------------

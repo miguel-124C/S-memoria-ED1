@@ -93,8 +93,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>ProjectED1</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -179,21 +179,33 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="Clases\CListaPuntero.cpp">
-            <DependentOn>Clases\CListaPuntero.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Clases\CListaSMemoria.cpp">
-            <DependentOn>Clases\CListaSMemoria.h</DependentOn>
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Clases\CListaVector.cpp">
-            <DependentOn>Clases\CListaVector.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
         <CppCompile Include="Clases\CSMemoria.cpp">
             <DependentOn>Clases\CSMemoria.h</DependentOn>
             <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Listas\CListaPuntero.cpp">
+            <DependentOn>Clases\Listas\CListaPuntero.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Listas\CListaSMemoria.cpp">
+            <DependentOn>Clases\Listas\CListaSMemoria.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Listas\CListaVector.cpp">
+            <DependentOn>Clases\Listas\CListaVector.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Polinomio\CPoliSMemoria.cpp">
+            <DependentOn>Clases\Polinomio\CPoliSMemoria.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Polinomio\CPoliVector.cpp">
+            <DependentOn>Clases\Polinomio\CPoliVector.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Polinomio\Polinomio-Listas\CPoliListaVector.cpp">
+            <DependentOn>Clases\Polinomio\Polinomio-Listas\CPoliListaVector.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
         </CppCompile>
         <CppCompile Include="Form.cpp">
             <Form>Form2</Form>
@@ -205,7 +217,10 @@
             <BuildOrder>3</BuildOrder>
         </None>
         <None Include="Interfaces\ITDALista.h">
-            <BuildOrder>4</BuildOrder>
+            <BuildOrder>8</BuildOrder>
+        </None>
+        <None Include="Interfaces\ITDAPolinomio.h">
+            <BuildOrder>9</BuildOrder>
         </None>
         <CppCompile Include="ProjectED1.cpp">
             <BuildOrder>0</BuildOrder>

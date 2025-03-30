@@ -7,6 +7,8 @@
 #pragma package(smart_init)
 
 // Constructor
+CSMemoria::CSMemoria() {
+}
 CSMemoria::CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas ) {
 	for( int i = 0; i < Max(); i++ ) {
         MEM[i].dir 	= i;
