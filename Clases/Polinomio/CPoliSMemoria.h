@@ -10,8 +10,8 @@ typedef int DirPolSMem;
 
 class CPoliSMemoria : public ITDAPolinomio{
 private:
-	DirPolSMem BuscarExponente( int Exp ) override;
-	DirPolSMem BuscarTerminoN( int I ) override;
+	DirPolSMem BuscarExponente( int Exp );
+	DirPolSMem BuscarTerminoN( int I );
 public:
 
 	DirPolSMem PtrPoli;

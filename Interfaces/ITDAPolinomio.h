@@ -4,9 +4,6 @@
 #include <vcl.h>
 
 class ITDAPolinomio{
-private:
-	virtual int BuscarExponente( int Exp ) = 0;
-	virtual int BuscarTerminoN( int I ) = 0;
 public:
 
 	virtual void Crea() = 0;

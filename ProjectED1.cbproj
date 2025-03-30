@@ -195,6 +195,10 @@
             <DependentOn>Clases\Listas\CListaVector.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Clases\Polinomio\CPoliPunteros.cpp">
+            <DependentOn>Clases\Polinomio\CPoliPunteros.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Clases\Polinomio\CPoliSMemoria.cpp">
             <DependentOn>Clases\Polinomio\CPoliSMemoria.h</DependentOn>
             <BuildOrder>12</BuildOrder>

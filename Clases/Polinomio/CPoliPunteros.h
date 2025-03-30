@@ -1,20 +1,24 @@
 //---------------------------------------------------------------------------
 
-#ifndef CPoliListaVectorH
-#define CPoliListaVectorH
+#ifndef CPoliPunterosH
+#define CPoliPunterosH
 //---------------------------------------------------------------------------
-
-#include "../Clases/Listas/CListaVector.h"
 #include "../Interfaces/ITDAPolinomio.h"
 
-class CPoliListaVector : public ITDAPolinomio{
+struct NodoPoli{
+	int Coef;
+	int Exp;
+	NodoPoli* Sig;
+};
+
+class CPoliPuntero : public ITDAPolinomio{
 private:
-	int BuscarExponente( int Exp );
-	int BuscarTerminoN( int I );
+	NodoPoli* BuscarExponente( int Exp );
+	NodoPoli* BuscarTerminoN( int I );
 public:
 
-	CListaVector* Pol = new CListaVector();
-    static const int Nulo = 0;
+	NodoPoli* PtrPoli;
+	int NroTerminos;
 
 	void Crea() override ;
 	bool EsCero() override;
