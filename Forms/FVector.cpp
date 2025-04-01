@@ -12,6 +12,7 @@
 #include "./Clases/Listas/CListaVector.h"
 // Polinomio
 #include "./Clases/Polinomio/CPoliVector.h"
+#include "./Clases/Polinomio/Polinomio-Listas/CPoliListaVector.h"
 
 TForm1 *Form1;
 //---------------------------------------------------------------------------
@@ -72,6 +73,7 @@ void __fastcall TForm1::BtnCreatePolinomioClick(TObject *Sender)
 	if( PolinomioCreado ) return ShowMessage("Polinomio ya creado");
 
 	TDAPOLINOMIO = new CPoliVector( Canvas );
+//	TDAPOLINOMIO = new CPoliListaVector( TDALISTA, Canvas );
 	TDAPOLINOMIO->Crea();
 	PolinomioCreado = true;
 }

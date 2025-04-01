@@ -19,7 +19,7 @@ public:
 	TipoDatoListVec Elementos[MAX];
 
 	CListaVector( TCanvas* canvas );
-    CListaVector( );
+    CListaVector( ){}
 
 	void Crear() override;
 	DireccionListVec Fin() override;

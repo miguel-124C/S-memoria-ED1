@@ -7,6 +7,7 @@
 USEFORM("Forms\FVector.cpp", Form1);
 USEFORM("Forms\FSMemoria.cpp", Form2);
 USEFORM("Forms\FPunteros.cpp", Form3);
+USEFORM("Forms\FListas.cpp", Form4);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -25,6 +26,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //				case 1: Application->CreateForm(__classid(TForm2), &Form2); break;
 //				case 2: Application->CreateForm(__classid(TForm1), &Form1); break;
 //				case 3: Application->CreateForm(__classid(TForm3), &Form3); break;
+//				case 4: Application->CreateForm(__classid(TForm4), &Form4); break;
 //				default: ShowMessage("Opción no válida. Cerrando programa."); return 0;
 //			}
 //
@@ -35,8 +37,10 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //			ShowMessage("No se seleccionó ningún formulario. Cerrando programa.");
 //		}
 
-//		Application->CreateForm(__classid(TForm1), &Form1);
-		Application->CreateForm(__classid(TForm3), &Form3);
+//		Application->CreateForm(__classid(TForm2), &Form2);
+		Application->CreateForm(__classid(TForm1), &Form1);
+//		Application->CreateForm(__classid(TForm3), &Form3);
+//		Application->CreateForm(__classid(TForm4), &Form4);
 		Application->Run();
 	}
 	catch (Exception &exception)

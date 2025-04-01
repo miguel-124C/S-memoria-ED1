@@ -211,6 +211,12 @@
             <DependentOn>Clases\Polinomio\Polinomio-Listas\CPoliListaVector.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Forms\FListas.cpp">
+            <Form>Form4</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>Forms\FListas.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Forms\FPunteros.cpp">
             <Form>Form3</Form>
             <FormType>dfm</FormType>
@@ -248,6 +254,7 @@
         <FormResources Include="Forms\FVector.dfm"/>
         <FormResources Include="Forms\FSMemoria.dfm"/>
         <FormResources Include="Forms\FPunteros.dfm"/>
+        <FormResources Include="Forms\FListas.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
