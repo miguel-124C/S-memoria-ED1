@@ -159,5 +159,25 @@ void CListaSMemoria::Modifica( DireccionListMem direccion, TipoDatoListMem eleme
 }
 
 void CListaSMemoria::MostrarLista( ){
+	if( Vacia() ) return ShowMessage("Lista Vacia");
 
+	TipoDatoListMem x = PtrElementos;
+
+	while( x != -1 ){
+		TipoDatoListMem Elemento = Memoria->ObtieneDato( x, "Elemento" );
+
+        int x2 = X1 + WidthField;
+		int y2 = Y1 + HeightField;
+		canvas->Brush->Color = (TColor)0xffffff;
+		canvas->Rectangle(X1, Y1, x2, y2);
+
+		canvas->Font->Size = 16;
+		canvas->TextOut( X1 + 5, Y1 + 5, Elemento );
+
+		X1 += WidthField;
+
+		x = Memoria->ObtieneDato( x, "Sig" );
+	}
+
+	X1 = 50;
 }

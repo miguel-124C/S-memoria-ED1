@@ -7,8 +7,6 @@
 #pragma package(smart_init)
 
 // Constructor
-CSMemoria::CSMemoria() {
-}
 CSMemoria::CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas ) {
 	for( int i = 0; i < Max(); i++ ) {
         MEM[i].dir 	= i;
@@ -23,6 +21,16 @@ CSMemoria::CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas ) {
 
 int CSMemoria::NewEspacio(AnsiString cadena) {
 	int cantidadIds = NumeroIds( cadena );
+
+    if( EspacioDisponible() == 0 ){
+		ShowMessage("Memoria llena, no hay espacios disponibles");
+		return Nulo();
+	}
+	if( cantidadIds > EspacioDisponible() ){
+		ShowMessage( "No hay espacio para reservar " + IntToStr(cantidadIds) + " espacio/s" );
+		return Nulo();
+	}
+
 	int DIR = getLibre();
 	int D 	= getLibre();
 	for( int i = 1; i <= cantidadIds - 1; i++ ) {
@@ -37,16 +45,21 @@ int CSMemoria::NewEspacio(AnsiString cadena) {
 }
 
 void CSMemoria::DeleteEspacio(int dir) {
+	if(DirLibre(dir)) return ShowMessage("Dir ya estaba liberado");
+
     int x = dir;
 	while( MEM[x].link != -1 ) {
 		x = MEM[x].link;
 	}
 
 	MEM[x].link = getLibre();
-    setLibre( dir );
+	setLibre( dir );
+    ShowMessage("Espacio en memoria liberado");
 }
 
 void CSMemoria::PonerDato(int dir, AnsiString cadena_id, TipoDatoMem valor) {
+	if(DirLibre(dir)) return ShowMessage("Dir está libre");
+
 	int z = dir;
 	bool idEncontrado = false;
 	while( z != -1 ){

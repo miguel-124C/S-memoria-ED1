@@ -45,6 +45,24 @@ NodoPoli* CPoliPuntero::BuscarTerminoN( int I ){
 	return DirTermino;
 }
 
+NodoPoli* CPoliPuntero::BuscarDirTerminoAnterior( NodoPoli* DirActual ){
+	NodoPoli* Dir = PtrPoli;
+
+	if( Dir == nullptr ){} // exception no existe ese termino
+
+	NodoPoli* DirTermino = nullptr;
+
+	while( Dir != nullptr && DirTermino == nullptr ){
+		if( Dir->Sig == DirActual ){
+			DirTermino = Dir;
+		}
+
+		Dir = Dir->Sig;
+	}
+
+	return DirTermino;
+}
+
 void CPoliPuntero::Crea(){
 	NroTerminos = 0;
 	PtrPoli = nullptr;
@@ -91,7 +109,7 @@ void CPoliPuntero::PonerTermino( int Coef, int Exp ){
 	NodoPoli* Dir = BuscarExponente( Exp );
 	if( Dir == nullptr ){
 		NodoPoli* Aux = new NodoPoli;
-        if( Aux == nullptr ){} //error espacio memoria
+        if( Aux == nullptr ) return ShowMessage("Error espacio memoria");
 
 		Aux->Coef = Coef;
 		Aux->Exp = Exp;
@@ -103,6 +121,14 @@ void CPoliPuntero::PonerTermino( int Coef, int Exp ){
 		Dir->Coef = NuevoCoef;
 
 		if( NuevoCoef == 0 ){
+			NodoPoli* DirNuevoSig = Dir->Sig;
+			if( Dir == PtrPoli ){
+				PtrPoli = DirNuevoSig;
+			}else{
+				NodoPoli* DirAnterior = BuscarDirTerminoAnterior( Dir );
+				DirAnterior->Sig = DirNuevoSig;
+			}
+
 			delete( Dir );
 			NroTerminos--;
 		}
@@ -116,4 +142,45 @@ int CPoliPuntero::Exponente( int NroTermino ){
 	if( Dir == nullptr ){} // no existe ese termino
 
     return Dir->Exp;
+}
+
+void CPoliPuntero::Evalua( int X ){
+	int resultado = 0;
+
+	NodoPoli* Dir = PtrPoli;
+
+	if( Dir == nullptr ) return ShowMessage("No existe ningun término");
+
+	while( Dir != nullptr){
+		int Coef = Dir->Coef;
+		int Exp = Dir->Exp;
+
+		resultado += Coef * pow( X, Exp );
+
+		Dir = Dir->Sig;
+	}
+
+    AnsiString Message = "Para X = " + IntToStr(X) + " el resultado es: " + IntToStr(resultado);
+	ShowMessage( Message );
+}
+
+void CPoliPuntero::MostrarPolinomio(){
+	NodoPoli* Dir = PtrPoli;
+
+	if( Dir == nullptr ) return ShowMessage("No existe ningun término");
+
+	AnsiString Polinomio;
+	while( Dir != nullptr){
+		int Coef = Dir->Coef;
+		int Exp = Dir->Exp;
+
+		AnsiString signo = Coef > 0 ? "+" : "-";
+
+		Polinomio += signo + IntToStr(Coef) + "X^" + IntToStr(Exp);
+
+		Dir = Dir->Sig;
+	}
+
+    Canvas->Font->Size = 18;
+	Canvas->TextOut(50, 700, "Polinomio: " +  Polinomio);
 }

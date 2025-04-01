@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef FormH
-#define FormH
+#ifndef FSMemoriaH
+#define FSMemoriaH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -11,6 +11,7 @@
 // Importando Clases Abstractas
 #include "./Interfaces/ISMemoria.h"
 #include "./Interfaces/ITDALista.h"
+#include "./Interfaces/ITDAPolinomio.h"
 
 
 //---------------------------------------------------------------------------
@@ -30,14 +31,21 @@ __published:	// IDE-managed Components
 	TEdit *EIdPonerDato;
 	TEdit *EValorPonerDato;
 	TButton *BtnCrearLista;
-	TLabel *LabelTipoLista;
 	TLabel *LLibre;
 	TLabel *LDisponible;
 	TButton *BtnInsertInicio;
 	TButton *BtnInsertFin;
-	TButton *BtnMostrarLista;
 	TEdit *EListaInsertInicio;
 	TEdit *EListaInsertFin;
+	TButton *BtnCreatePolinomio;
+	TButton *BtnPonerTermino;
+	TButton *BtnMostrarPolinomio;
+	TButton *BtnDerivarPolinomio;
+	TEdit *ECoef;
+	TEdit *EExp;
+	TButton *BtnMostrarListaMen;
+	TButton *BtnEvaluaPolinomio;
+	TEdit *EIncognita;
 	void __fastcall BtnCreateMemoriaClick(TObject *Sender);
 	void __fastcall BtnPedirEspacioClick(TObject *Sender);
 	void __fastcall BtnLiberarEspacioClick(TObject *Sender);
@@ -46,7 +54,11 @@ __published:	// IDE-managed Components
 	void __fastcall BtnCrearListaClick(TObject *Sender);
 	void __fastcall BtnInsertInicioClick(TObject *Sender);
 	void __fastcall BtnInsertFinClick(TObject *Sender);
-	void __fastcall BtnMostrarListaClick(TObject *Sender);
+	void __fastcall BtnCreatePolinomioClick(TObject *Sender);
+	void __fastcall BtnPonerTerminoClick(TObject *Sender);
+	void __fastcall BtnMostrarPolinomioClick(TObject *Sender);
+	void __fastcall BtnMostrarListaMenClick(TObject *Sender);
+	void __fastcall BtnEvaluaPolinomioClick(TObject *Sender);
 private:	// User declarations
 
 	// Simulador de memoria
@@ -55,10 +67,13 @@ private:	// User declarations
 	bool CreateMemoria();
 
 	// TDA Lista
-    // <int, int> = <TipoDato, Direccion>
+	// <int, int> = <TipoDato, Direccion>
 	ITDALista<int, int>* TDALISTA;
-    int TipoLista = 1; // 1 = ListaVectores | 2 = ListaMemoria | 3 = ListaPunteros
 	bool ListaCreada = false;
+
+	// TDA Polinomio
+	ITDAPolinomio* TDAPOLINOMIO;
+	bool PolinomioCreado = false;
 
 	void UpdateLibreDisponible();
     //--------------------------------------------------------------------------

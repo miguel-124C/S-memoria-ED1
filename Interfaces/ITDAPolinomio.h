@@ -2,6 +2,7 @@
 #define ITDAPolinomio_H
 
 #include <vcl.h>
+#include <math.h>
 
 class ITDAPolinomio{
 public:
@@ -14,6 +15,9 @@ public:
 	virtual void PonerTermino( int Coef, int Exp ) = 0;
 	virtual int NumeroTerminos() = 0;
 	virtual int Exponente( int NroTermino ) = 0;
+    virtual void Evalua( int X ) = 0;
+
+    virtual void MostrarPolinomio() = 0;
 
 	void Sumar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		//Poner polinomio en 0

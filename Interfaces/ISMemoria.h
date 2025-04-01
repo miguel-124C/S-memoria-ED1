@@ -14,7 +14,7 @@ struct NodoM {
 template <typename T>
 class ISMemoria {
 private:
-	static const int MAX = 20;
+	static const int MAX = 18;
 	static const int NULO = -1;
 
 	int libre;

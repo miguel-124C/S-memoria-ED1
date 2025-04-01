@@ -68,19 +68,19 @@ void CListaVector::Inserta( DireccionListVec direccion, TipoDatoListVec elemento
 void CListaVector::Inserta_primero( TipoDatoListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
-	for( int i = Longitud; i >= 1; i-- ){
+	for( int i = Longitud + 1; i >= 2; i-- ){
 		Elementos[i] = Elementos[i - 1];
 	}
 
-	Elementos[0] = elemento;
+	Elementos[1] = elemento;
     Longitud = Longitud + 1;
 }
 
 void CListaVector::Inserta_ultimo( TipoDatoListVec elemento ){
-	if( Longitud == MAX ) return; // Llamar exception listallena
+	if( Longitud == MAX ) return ShowMessage("listallena");
 
 	Longitud = Longitud + 1;
-	Elementos[Longitud - 1] = elemento;
+	Elementos[Longitud] = elemento;
 }
 
 void CListaVector::Suprime( DireccionListVec direccion ){
@@ -102,8 +102,7 @@ void CListaVector::Modifica( DireccionListVec direccion, TipoDatoListVec element
 }
 
 void CListaVector::MostrarLista( ){
-
-	for( int i = 0; i < Longitud; i++ ){
+	for( int i = 1; i <= Longitud; i++ ){
     	int x2 = X1 + WidthField;
         int y2 = Y1 + HeightField;
 		canvas->Brush->Color = (TColor)0xffffff;

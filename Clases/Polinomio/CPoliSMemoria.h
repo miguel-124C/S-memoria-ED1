@@ -4,7 +4,7 @@
 #define CPoliSMemoriaH
 //---------------------------------------------------------------------------
 #include "../Interfaces/ITDAPolinomio.h"
-#include "../Clases/CSMemoria.h"
+#include "../Interfaces/ISMemoria.h"
 
 typedef int DirPolSMem;
 
@@ -12,10 +12,15 @@ class CPoliSMemoria : public ITDAPolinomio{
 private:
 	DirPolSMem BuscarExponente( int Exp );
 	DirPolSMem BuscarTerminoN( int I );
+	DirPolSMem BuscarDirTerminoAnterior( int DirActual );
 public:
 
-	DirPolSMem PtrPoli;
-    CSMemoria* Memoria;
+	TCanvas* Canvas;
+
+	CPoliSMemoria( ISMemoria<DirPolSMem>* memoria, TCanvas* canvas );
+
+	DirPolSMem PtrPoli; // Puntero, siempre apunta al primer elemento
+    ISMemoria<DirPolSMem>* Memoria;
 	int NroTerminos;
 
 	void Crea() override ;
@@ -26,6 +31,9 @@ public:
 	void PonerTermino( int Coef, int Exp ) override;
 	int NumeroTerminos() override;
 	int Exponente( int NroTermino ) override;
+    void Evalua( int X ) override;
+
+    void MostrarPolinomio() override;
 };
 
 #endif

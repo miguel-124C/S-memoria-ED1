@@ -14,7 +14,12 @@ public:
 	int VC[MAX]; // Coeficientes
 	int VE[MAX]; // Exponentes
 
-    int NroTerminos;
+	int NroTerminos;
+
+	TCanvas* Canvas;
+	CPoliVector( TCanvas* canvas ){
+        Canvas = canvas;
+	};
 
 	void Crea() override ;
 	bool EsCero() override;
@@ -24,12 +29,15 @@ public:
 	void PonerTermino( int Coef, int Exp ) override;
 	int NumeroTerminos() override;
 	int Exponente( int NroTermino ) override;
+	void Evalua( int X ) override;
+
+	void MostrarPolinomio() override;
 
 	int GetLugarExp( int Exp ){
-    	if( !(Exp >= 0 && Exp <= Grado()) ){} // No existe termino con este Exponente
+    	if( !(Exp >= 0 && Exp <= Grado()) ) return -1;
 
         int Lugar = -1;
-		for( int i = 1; i < NroTerminos; i++ ){
+		for( int i = 1; i <= NroTerminos; i++ ){
 			if( VE[i] == Exp ){
                 Lugar = i;
 				break;

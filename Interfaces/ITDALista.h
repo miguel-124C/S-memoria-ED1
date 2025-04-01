@@ -33,6 +33,13 @@ public:
         this->canvas = canvas;
 	}
 
+    // COORDS vector
+	int X1 = 50;
+	int Y1 = 650;
+
+    int WidthField  = 100;
+	int HeightField = 50;
+
 	virtual ~ITDALista() {}  // Destructor virtual
 };
 

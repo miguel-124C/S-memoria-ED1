@@ -10,7 +10,6 @@ class CSMemoria : public ISMemoria<TipoDatoMem> {
 public:
 	// Constructor
 	CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas );
-    CSMemoria();
 
 	// Métodos heredados
 	int NewEspacio(AnsiString cadena) override;
