@@ -29,6 +29,7 @@ public:
 			PonerTermino( coef, exp );
 		}
 	}
+
 	void Restar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		//Poner polinomio en 0
 		for( int i = 1; i < P1->NumeroTerminos(); i++ ){
@@ -43,8 +44,29 @@ public:
 			PonerTermino( coef, exp );
 		}
 	}
+
 	void Multiplicar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		// Desarrollar
+	}
+
+	void Derivada( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
+		for( int i = 1; i < P1->NumeroTerminos(); i++ ){
+			int exp = P1->Exponente( i );
+			int coef = P1->Coeficiente( exp );
+			P2->PonerTermino( coef * exp , exp - 1 );
+		}
+	}
+
+	void MostrarIntegral( ITDAPolinomio* P1 ){
+        AnsiString Integral;
+		for( int i = 1; i < P1->NumeroTerminos(); i++ ){
+			int exp = P1->Exponente( i );
+			int coef = P1->Coeficiente( exp );
+            Integral = "("+ IntToStr(coef) + "X^" + IntToStr(exp + 1) + ") /" + IntToStr(exp+1) + "+";
+		}
+
+		Integral += "C";
+        ShowMessage( Integral );
 	}
 
 	virtual ~ITDAPolinomio() {}  // Destructor virtual
