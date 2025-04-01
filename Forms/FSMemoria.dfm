@@ -1,7 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Form2'
+  Caption = 'SMemoria'
   ClientHeight = 817
   ClientWidth = 1205
   Color = clBtnFace
