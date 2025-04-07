@@ -5,37 +5,35 @@
 //---------------------------------------------------------------------------
 
 #include "../Interfaces/ITDALista.h"
+#include "../Interfaces/IListaMethod.h"
 
-typedef int TipoDatoListVec;
-typedef int DireccionListVec;
+typedef int TDListVec;
 
-class CListaVector : public ITDALista<TipoDatoListVec, DireccionListVec> {
+class CListaVector : public ITDALista<TDListVec>, public IListaMethod<TDListVec, int> {
 public:
 
 	// Propiedades
 	static const int MAX = 100;
 	static const int NULO = 0;
 
-	TipoDatoListVec Elementos[MAX];
+	TDListVec Elementos[MAX];
 
 	CListaVector( TCanvas* canvas );
-    CListaVector( ){}
+	CListaVector( ){}
 
 	void Crear() override;
-	DireccionListVec Fin() override;
-	DireccionListVec Primero() override;
-	DireccionListVec Siguiente( DireccionListVec direccion ) override;
-	DireccionListVec Anterior( DireccionListVec direccion ) override;
-	bool Vacia() override;
-	TipoDatoListVec Recupera( DireccionListVec direccion ) override;
-	int GetLongitud () override;
-	void Inserta( DireccionListVec direccion, TipoDatoListVec elemento ) override;
-	void Inserta_primero( TipoDatoListVec elemento ) override;
-	void Inserta_ultimo( TipoDatoListVec elemento ) override;
-	void Suprime( DireccionListVec direccion ) override;
-	void Modifica( DireccionListVec direccion, TipoDatoListVec elemento) override;
-
+    void Inserta_primero( TDListVec elemento ) override;
+	void Inserta_ultimo( TDListVec elemento ) override;
 	void MostrarLista( ) override;
+
+	int Fin() override;
+	int Primero() override;
+	int Siguiente( int direccion ) override;
+	int Anterior( int direccion ) override;
+	TDListVec Recupera( int direccion ) override;
+	void Inserta( int direccion, TDListVec elemento ) override;
+	void Suprime( int direccion ) override;
+	void Modifica( int direccion, TDListVec elemento) override;
 };
 
 #endif

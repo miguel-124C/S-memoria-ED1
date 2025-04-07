@@ -93,8 +93,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>ProjectED1</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -217,6 +217,12 @@
             <DependentOn>Forms\FListas.h</DependentOn>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Forms\FPolinomios.cpp">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>Forms\FPolinomios.h</DependentOn>
+            <BuildOrder>2</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Forms\FPunteros.cpp">
             <Form>Form3</Form>
             <FormType>dfm</FormType>
@@ -224,17 +230,14 @@
             <BuildOrder>15</BuildOrder>
         </CppCompile>
         <CppCompile Include="Forms\FSMemoria.cpp">
-            <Form>Form2</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Forms\FSMemoria.h</DependentOn>
-            <BuildOrder>2</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Forms\FVector.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Forms\FVector.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
+            <DependentOn>Forms\FSMemoria.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
         </CppCompile>
+        <None Include="Interfaces\IListaMethod.h">
+            <BuildOrder>17</BuildOrder>
+        </None>
         <None Include="Interfaces\ISMemoria.h">
             <BuildOrder>3</BuildOrder>
         </None>
@@ -244,6 +247,12 @@
         <None Include="Interfaces\ITDAPolinomio.h">
             <BuildOrder>9</BuildOrder>
         </None>
+        <CppCompile Include="Labs\Lab1.cpp">
+            <Form>Form5</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>Labs\Lab1.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
         <CppCompile Include="ProjectED1.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -251,10 +260,11 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <FormResources Include="Forms\FVector.dfm"/>
-        <FormResources Include="Forms\FSMemoria.dfm"/>
         <FormResources Include="Forms\FPunteros.dfm"/>
+        <FormResources Include="Forms\FPolinomios.dfm"/>
+        <FormResources Include="Labs\Lab1.dfm"/>
         <FormResources Include="Forms\FListas.dfm"/>
+        <FormResources Include="Forms\FSMemoria.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

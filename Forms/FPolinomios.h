@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef FSMemoriaH
-#define FSMemoriaH
+#ifndef FPolinomiosH
+#define FPolinomiosH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -10,38 +10,63 @@
 
 // Importando Clases Abstractas
 #include "./Interfaces/ISMemoria.h"
+#include "./Interfaces/ITDAPolinomio.h"
 
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
+class TForm2 : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *BtnCreateMemoria;
 	TButton *BtnPedirEspacio;
 	TButton *BtnLiberarEspacio;
 	TButton *BtnMostrarMemoria;
-	TButton *BtnPonerDato;
 	TEdit *ENombreEspacio;
 	TEdit *ENombreLiberarEspacio;
 	TEdit *EInicioMemoria;
 	TEdit *EFinMemoria;
-	TEdit *EDireccionPonerDato;
-	TEdit *EIdPonerDato;
-	TEdit *EValorPonerDato;
+	TButton *BtnCreatePolinomio;
+	TButton *BtnPonerTermino;
+	TButton *BtnMostrarPolinomio;
+	TButton *BtnDerivarPolinomio;
+	TEdit *ECoef;
+	TEdit *EExp;
+	TButton *BtnEvaluaPolinomio;
+	TEdit *EIncognita;
+	TLabel *LTitlePolinomio;
+	TButton *BtnChangeType;
+	TButton *BtnCreateLista;
+	TButton *BtnInsertInicio;
+	TEdit *EInsertInicio;
+	TEdit *EInsertFin;
+	TButton *BtnInsertFinal;
+	TButton *BtnMostrarLista;
 	void __fastcall BtnCreateMemoriaClick(TObject *Sender);
 	void __fastcall BtnPedirEspacioClick(TObject *Sender);
 	void __fastcall BtnLiberarEspacioClick(TObject *Sender);
-	void __fastcall BtnPonerDatoClick(TObject *Sender);
 	void __fastcall BtnMostrarMemoriaClick(TObject *Sender);
+	void __fastcall BtnCreatePolinomioClick(TObject *Sender);
+	void __fastcall BtnPonerTerminoClick(TObject *Sender);
+	void __fastcall BtnMostrarPolinomioClick(TObject *Sender);
+	void __fastcall BtnEvaluaPolinomioClick(TObject *Sender);
+	void __fastcall BtnChangeTypeClick(TObject *Sender);
 private:	// User declarations
-public:		// User declarations
-	__fastcall TForm1(TComponent* Owner);
 
 	// Simulador de memoria
 	ISMemoria<int>* SMEMORIA;
 	bool MemoriaCreada = false;
 	bool CreateMemoria();
+
+	// TDA Polinomio
+	ITDAPolinomio* TDAPOLINOMIO;
+	bool PolinomioCreado = false;
+	void CreatePolinomio( AnsiString TypePoli );
+    void SelectedTypePolinomio();
+    //--------------------------------------------------------------------------
+public:		// User declarations
+	__fastcall TForm2(TComponent* Owner);
+
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern PACKAGE TForm2 *Form2;
 //---------------------------------------------------------------------------
 #endif

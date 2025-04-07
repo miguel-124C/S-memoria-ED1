@@ -14,46 +14,38 @@ void CListaVector::Crear(){
     Longitud = 0;
 }
 
-DireccionListVec CListaVector::Fin(){
+int CListaVector::Fin(){
 	if( !Vacia() ) return Longitud;
     return NULO;
 }
 
-DireccionListVec CListaVector::Primero(){
+int CListaVector::Primero(){
 	if( !Vacia() ) return 1;
 	return NULO;
 }
 
-DireccionListVec CListaVector::Siguiente( DireccionListVec direccion ){
+int CListaVector::Siguiente( int direccion ){
 	if( Vacia() ) return NULO; // Llamar exception ListaVacia
 	if( direccion == Longitud ) return NULO; // Llamar exception DireccionErr
 
 	return direccion++;
 }
 
-DireccionListVec CListaVector::Anterior( DireccionListVec direccion ){
+int CListaVector::Anterior( int direccion ){
 	if( Vacia() ) return NULO; // Llamar exception ListaVacia
 	if( direccion == 1 ) return NULO; // Llamar exception DireccionPrimeraErr
 
 	return direccion--;
 }
 
-bool CListaVector::Vacia(){
-	return Longitud == 0;
-}
-
-TipoDatoListVec CListaVector::Recupera( DireccionListVec direccion ){
+TDListVec CListaVector::Recupera( int direccion ){
 	if( Vacia() ) return NULO; // Llamar exception ListaVacia
 	if( !(direccion >= 1 && direccion <= Longitud) ) return NULO; // Llamar exception DireccionErr
 
     return Elementos[direccion];
 }
 
-int CListaVector::GetLongitud (){
-    return Longitud;
-}
-
-void CListaVector::Inserta( DireccionListVec direccion, TipoDatoListVec elemento ){
+void CListaVector::Inserta( int direccion, TDListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 	if(!(direccion >= 1 && direccion <= Longitud)) return; // Llamar exception DireccionErr
 
@@ -65,7 +57,7 @@ void CListaVector::Inserta( DireccionListVec direccion, TipoDatoListVec elemento
 	Longitud = Longitud + 1;
 }
 
-void CListaVector::Inserta_primero( TipoDatoListVec elemento ){
+void CListaVector::Inserta_primero( TDListVec elemento ){
 	if( Longitud == MAX ) return; // Llamar exception listallena
 
 	for( int i = Longitud + 1; i >= 2; i-- ){
@@ -76,14 +68,14 @@ void CListaVector::Inserta_primero( TipoDatoListVec elemento ){
     Longitud = Longitud + 1;
 }
 
-void CListaVector::Inserta_ultimo( TipoDatoListVec elemento ){
+void CListaVector::Inserta_ultimo( TDListVec elemento ){
 	if( Longitud == MAX ) return ShowMessage("listallena");
 
 	Longitud = Longitud + 1;
 	Elementos[Longitud] = elemento;
 }
 
-void CListaVector::Suprime( DireccionListVec direccion ){
+void CListaVector::Suprime( int direccion ){
 	if( Vacia() ) return; // Llamar exception ListaVacia
 	if( !(direccion >= 1 && direccion <= Longitud) ) return; // Llamar exception DireccionErr
 
@@ -94,7 +86,7 @@ void CListaVector::Suprime( DireccionListVec direccion ){
 	Longitud = Longitud - 1;
 }
 
-void CListaVector::Modifica( DireccionListVec direccion, TipoDatoListVec elemento){
+void CListaVector::Modifica( int direccion, TDListVec elemento){
 	if( Vacia() ) return; // Llamar exception ListaVacia
 	if( !(direccion >= 1 && direccion <= Longitud) ) return; // Llamar exception DireccionErr
 

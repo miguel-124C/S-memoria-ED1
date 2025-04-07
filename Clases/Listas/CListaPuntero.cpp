@@ -58,21 +58,13 @@ NodoPuntero* CListaPuntero::Anterior( NodoPuntero* direccion ){
 //	return direccion--;
 }
 
-bool CListaPuntero::Vacia(){
-	return Longitud == 0;
-}
-
-TipoElemento CListaPuntero::Recupera( NodoPuntero* direccion ){
+TDElem CListaPuntero::Recupera( NodoPuntero* direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 
     return direccion->Elemento;
 }
 
-int CListaPuntero::GetLongitud (){
-    return Longitud;
-}
-
-void CListaPuntero::Inserta( NodoPuntero* direccion, TipoElemento elemento ){
+void CListaPuntero::Inserta( NodoPuntero* direccion, TDElem elemento ){
 	// X tendria direccion de memoria si existe espacio
 	NodoPuntero* x = new NodoPuntero;
 	if( x != nullptr ){
@@ -100,7 +92,7 @@ void CListaPuntero::Inserta( NodoPuntero* direccion, TipoElemento elemento ){
     return; // llamar a exception existeespaciomemoria
 }
 
-void CListaPuntero::Inserta_primero( TipoElemento elemento ){
+void CListaPuntero::Inserta_primero( TDElem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	NodoPuntero* x = new NodoPuntero;//	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -114,7 +106,7 @@ void CListaPuntero::Inserta_primero( TipoElemento elemento ){
 	}
 }
 
-void CListaPuntero::Inserta_ultimo( TipoElemento elemento ){
+void CListaPuntero::Inserta_ultimo( TDElem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	NodoPuntero* x = new NodoPuntero;//	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -151,7 +143,7 @@ void CListaPuntero::Suprime( NodoPuntero* direccion ){
     Longitud = Longitud - 1;
 }
 
-void CListaPuntero::Modifica( NodoPuntero* direccion, TipoElemento elemento){
+void CListaPuntero::Modifica( NodoPuntero* direccion, TDElem elemento){
 	if( Vacia() ) return; // llamar a exception listavacia
 	direccion->Elemento = elemento;// Memoria->PonerDato(direccion,"Elemento", elemento);
 }
@@ -162,7 +154,7 @@ void CListaPuntero::MostrarLista( ){
 	NodoPuntero* x = PtrElementos;
 
 	while( x != nullptr ){
-		TipoElemento Elemento = x->Elemento;
+		TDElem Elemento = x->Elemento;
 
         int x2 = X1 + WidthField;
 		int y2 = Y1 + HeightField;

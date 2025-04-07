@@ -47,7 +47,7 @@ public:		// User declarations
 
     // TDA Lista
 	// <int, int> = <TipoDato, Direccion>
-	ITDALista<int, NodoPuntero*>* TDALISTA;
+	ITDALista<int>* TDALISTA;
 	bool ListaCreada = false;
 
 	// TDA Polinomio

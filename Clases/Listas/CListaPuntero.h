@@ -5,15 +5,16 @@
 //---------------------------------------------------------------------------
 
 #include "../Interfaces/ITDALista.h"
+#include "../Interfaces/IListaMethod.h"
 
-typedef int TipoElemento;
+typedef int TDElem;
 
 struct NodoPuntero {
-	TipoElemento Elemento;
+	TDElem Elemento;
     NodoPuntero* Sig;
 };
 
-class CListaPuntero: public ITDALista<TipoElemento, NodoPuntero*> {
+class CListaPuntero: public ITDALista<TDElem>, public IListaMethod<TDElem, NodoPuntero*> {
 public:
 
 	NodoPuntero* PtrElementos;
@@ -21,19 +22,17 @@ public:
     CListaPuntero( TCanvas* canvas );
 
 	void Crear() override;
+    void Inserta_primero( TDElem elemento ) override;
+	void Inserta_ultimo( TDElem elemento ) override;
+	void MostrarLista( ) override;
+
 	NodoPuntero* Fin() override;
 	NodoPuntero* Primero() override;
 	NodoPuntero* Siguiente( NodoPuntero* direccion ) override;
 	NodoPuntero* Anterior( NodoPuntero* direccion ) override;
-	bool Vacia() override;
-	TipoElemento Recupera( NodoPuntero* direccion ) override;
-	int GetLongitud () override;
-	void Inserta( NodoPuntero* direccion, TipoElemento elemento ) override;
-	void Inserta_primero( TipoElemento elemento ) override;
-	void Inserta_ultimo( TipoElemento elemento ) override;
+	TDElem Recupera( NodoPuntero* direccion ) override;
+	void Inserta( NodoPuntero* direccion, TDElem elemento ) override;
 	void Suprime( NodoPuntero* direccion ) override;
-	void Modifica( NodoPuntero* direccion, TipoElemento elemento) override;
-
-	void MostrarLista( ) override;
+	void Modifica( NodoPuntero* direccion, TDElem elemento) override;
 };
 #endif

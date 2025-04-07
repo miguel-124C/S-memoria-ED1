@@ -137,4 +137,10 @@ void CSMemoria::MostrarMemoria(){
 		DibujarRow(x1, y1, i);
 		x1 = 500;
 	}
+
+	AnsiString libre = "Libre " + IntToStr(getLibre());
+	canvas->Brush->Color = clBtnFace;
+	canvas->Font->Size = 18;
+	canvas->Font->Color = clNone;
+	canvas->TextOut(x1, y1 + 20, libre);
 }

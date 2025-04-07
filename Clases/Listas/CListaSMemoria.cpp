@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-CListaSMemoria::CListaSMemoria( ISMemoria<TipoDatoListMem>* memoria, TCanvas* canvas ){
+CListaSMemoria::CListaSMemoria( ISMemoria<TDListMem>* memoria, TCanvas* canvas ){
 	setCanvas(canvas);
 	Memoria = memoria;
 }
@@ -16,11 +16,11 @@ void CListaSMemoria::Crear(){
     PtrElementos = -1;
 }
 
-DireccionListMem CListaSMemoria::Fin(){
+int CListaSMemoria::Fin(){
 	if( Vacia() ) return -1; // llamar a exception listavacia;
 
-	TipoDatoListMem x = PtrElementos;
-	TipoDatoListMem PtrFin;
+	TDListMem x = PtrElementos;
+	TDListMem PtrFin;
 
 	while( x != -1 ){
 		 PtrFin = x;
@@ -30,25 +30,25 @@ DireccionListMem CListaSMemoria::Fin(){
 	return PtrFin;
 }
 
-DireccionListMem CListaSMemoria::Primero(){
+int CListaSMemoria::Primero(){
 	if( !Vacia() ) return PtrElementos; // Apunta primer elemento
 
 	return -1; // Llamar exception ListaVacia
 }
 
-DireccionListMem CListaSMemoria::Siguiente( DireccionListMem direccion ){
+int CListaSMemoria::Siguiente( int direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 	if( direccion == Fin() ) return 0; // Llamar exception DireccionErr
 
 	return Memoria->ObtieneDato( direccion, "Sig" );
 }
 
-DireccionListMem CListaSMemoria::Anterior( DireccionListMem direccion ){
+int CListaSMemoria::Anterior( int direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 	if( direccion == Primero() ) return 0; // Llamar exception DireccionPrimeraErr
 
-	TipoDatoListMem x = PtrElementos;
-	TipoDatoListMem anterior = -1;
+	TDListMem x = PtrElementos;
+	TDListMem anterior = -1;
 
 	while( x != -1 ){
 		if( x == direccion ) return anterior;
@@ -60,21 +60,13 @@ DireccionListMem CListaSMemoria::Anterior( DireccionListMem direccion ){
 	return direccion--;
 }
 
-bool CListaSMemoria::Vacia(){
-	return Longitud == 0;
-}
-
-TipoDatoListMem CListaSMemoria::Recupera( DireccionListMem direccion ){
+TDListMem CListaSMemoria::Recupera( int direccion ){
 	if( Vacia() ) return 0; // Llamar exception ListaVacia
 
     return Memoria->ObtieneDato( direccion, "Elemento"  );
 }
 
-int CListaSMemoria::GetLongitud (){
-    return Longitud;
-}
-
-void CListaSMemoria::Inserta( DireccionListMem direccion, TipoDatoListMem elemento ){
+void CListaSMemoria::Inserta( int direccion, TDListMem elemento ){
 	// X tendria direccion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 	int anterior;
@@ -102,7 +94,7 @@ void CListaSMemoria::Inserta( DireccionListMem direccion, TipoDatoListMem elemen
     return; // llamar a exception existeespaciomemoria
 }
 
-void CListaSMemoria::Inserta_primero( TipoDatoListMem elemento ){
+void CListaSMemoria::Inserta_primero( TDListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -116,7 +108,7 @@ void CListaSMemoria::Inserta_primero( TipoDatoListMem elemento ){
 	}
 }
 
-void CListaSMemoria::Inserta_ultimo( TipoDatoListMem elemento ){
+void CListaSMemoria::Inserta_ultimo( TDListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
@@ -135,7 +127,7 @@ void CListaSMemoria::Inserta_ultimo( TipoDatoListMem elemento ){
 	}
 }
 
-void CListaSMemoria::Suprime( DireccionListMem direccion ){
+void CListaSMemoria::Suprime( int direccion ){
 	if( Vacia() ) return; // llamar a exception listavacia
 
 	int x;
@@ -153,7 +145,7 @@ void CListaSMemoria::Suprime( DireccionListMem direccion ){
     Longitud = Longitud - 1;
 }
 
-void CListaSMemoria::Modifica( DireccionListMem direccion, TipoDatoListMem elemento){
+void CListaSMemoria::Modifica( int direccion, TDListMem elemento){
 	if( Vacia() ) return; // llamar a exception listavacia
 	Memoria->PonerDato(direccion,"Elemento", elemento);
 }
@@ -161,10 +153,10 @@ void CListaSMemoria::Modifica( DireccionListMem direccion, TipoDatoListMem eleme
 void CListaSMemoria::MostrarLista( ){
 	if( Vacia() ) return ShowMessage("Lista Vacia");
 
-	TipoDatoListMem x = PtrElementos;
+	TDListMem x = PtrElementos;
 
 	while( x != -1 ){
-		TipoDatoListMem Elemento = Memoria->ObtieneDato( x, "Elemento" );
+		TDListMem Elemento = Memoria->ObtieneDato( x, "Elemento" );
 
         int x2 = X1 + WidthField;
 		int y2 = Y1 + HeightField;

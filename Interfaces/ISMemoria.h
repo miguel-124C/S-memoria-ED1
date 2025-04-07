@@ -25,8 +25,8 @@ public:
 	TCanvas* canvas;
 
 	//RangoPaginado
-	int pagStart = 0;
-    int pagEnd   = 0;
+	int pagStart = 1;
+    int pagEnd   = 20;
 
 	// Getters y setters
 	int getLibre() const { return libre; }
