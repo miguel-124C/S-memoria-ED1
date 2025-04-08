@@ -14,6 +14,20 @@ TForm3 *Form3;
 
 #include "./Clases/Polinomio/Polinomio-Listas/CPoliListaSMem.h"
 
+// Crear Memoria
+// Perdir espacio para x
+// Perdir espacio para y
+// Mostrar Memoria
+// Liberar direccion 0
+// Mostrar Memoria
+// Crear Polinomio
+// Poner termino 10 a la 3
+// Mostar Polinomio
+// Mostrar Memoria
+// Derivar
+// Mostrar Memoria => El actual debe ser reemplazado no crear uno nuevo
+// Mostrar Polinomio => 30x2
+
 //---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)

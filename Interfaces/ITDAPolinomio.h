@@ -15,9 +15,10 @@ public:
 	virtual void PonerTermino( int Coef, int Exp ) = 0;
 	virtual int NumeroTerminos() = 0;
 	virtual int Exponente( int NroTermino ) = 0;
-    virtual void Evalua( int X ) = 0;
+	virtual void Evalua( int X ) = 0;
+//    virtual void VaciarPolinomio() = 0;
 
-    virtual void MostrarPolinomio() = 0;
+	virtual void MostrarPolinomio() = 0;
 
 	void Sumar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		//Poner polinomio en 0
@@ -54,7 +55,6 @@ public:
 	}
 
 	void Derivada( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
-        P2->Longitud = 0;
 		for( int i = 1; i < P1->NumeroTerminos(); i++ ){
 			int exp = P1->Exponente( i );
 			int coef = P1->Coeficiente( exp );
@@ -63,6 +63,7 @@ public:
 
 		// Crear Memoria
 		// Colocar un termino
+        // Liberar termino
 		// Crear Polinomio
 		// Poner Dato
         // Mostrar Polinomio
