@@ -54,11 +54,18 @@ public:
 	}
 
 	void Derivada( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
+        P2->Longitud = 0;
 		for( int i = 1; i < P1->NumeroTerminos(); i++ ){
 			int exp = P1->Exponente( i );
 			int coef = P1->Coeficiente( exp );
 			P2->PonerTermino( coef * exp , exp - 1 );
 		}
+
+		// Crear Memoria
+		// Colocar un termino
+		// Crear Polinomio
+		// Poner Dato
+        // Mostrar Polinomio
 	}
 
 	void MostrarIntegral( ITDAPolinomio* P1 ){
