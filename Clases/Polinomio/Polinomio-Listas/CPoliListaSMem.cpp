@@ -2,11 +2,11 @@
 
 #pragma hdrstop
 
-#include "CPoliListaVector.h"
+#include "CPoliListaSMem.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-int CPoliListaVector::BuscarExponente( int Exp ){
+int CPoliListaSMem::BuscarExponente( int Exp ){
 	int Dir = Pol->Siguiente( Pol->Primero() );
 	if( Dir == Nulo ) return Nulo; // Exception Polinomio no tiene T�rminos;
 
@@ -23,7 +23,7 @@ int CPoliListaVector::BuscarExponente( int Exp ){
 	return DirExp;
 }
 
-int CPoliListaVector::BuscarTerminoN( int I ){
+int CPoliListaSMem::BuscarTerminoN( int I ){
 	int Dir = Pol->Primero();
 	int NumeroTermino = 0;
 
@@ -44,10 +44,10 @@ int CPoliListaVector::BuscarTerminoN( int I ){
 	return DirTermino;
 }
 
-void CPoliListaVector::Crea(){ Pol->Crear(); }
-bool CPoliListaVector::EsCero(){ return Pol->Vacia(); }
+void CPoliListaSMem::Crea(){ Pol->Crear(); }
+bool CPoliListaSMem::EsCero(){ return Pol->Vacia(); }
 
-int CPoliListaVector::Grado(){
+int CPoliListaSMem::Grado(){
 	int Dir = Pol->Siguiente( Pol->Primero() );
 
 	if( Dir != Nulo ){} // Exception Polinomio no tiene T�rminos;
@@ -65,14 +65,14 @@ int CPoliListaVector::Grado(){
 	return MaxGrado;
 }
 
-int CPoliListaVector::Coeficiente( int Exp ){
+int CPoliListaSMem::Coeficiente( int Exp ){
 	int Dir = BuscarExponente( Exp );
 	if( Dir == Nulo ){} // Exception Polinomio no tiene T�rminos;
 
     return Pol->Recupera( Pol->Anterior( Dir ) );
 }
 
-void CPoliListaVector::AsignarCoeficiente( int Coef, int Exp ){
+void CPoliListaSMem::AsignarCoeficiente( int Coef, int Exp ){
     int Dir = BuscarExponente( Exp );
 	if( Dir == Nulo ){} // Exception Polinomio no tiene T�rminos;
 
@@ -85,7 +85,7 @@ void CPoliListaVector::AsignarCoeficiente( int Coef, int Exp ){
 	}
 }
 
-void CPoliListaVector::PonerTermino( int Coef, int Exp ){
+void CPoliListaSMem::PonerTermino( int Coef, int Exp ){
 	int DirExp = BuscarExponente( Exp );
 
 	if( DirExp != Nulo ){
@@ -104,16 +104,16 @@ void CPoliListaVector::PonerTermino( int Coef, int Exp ){
 	}
 }
 
-int CPoliListaVector::NumeroTerminos(){ return Pol->Longitud / 2; }
+int CPoliListaSMem::NumeroTerminos(){ return Pol->Longitud / 2; }
 
-int CPoliListaVector::Exponente( int NroTermino ){
+int CPoliListaSMem::Exponente( int NroTermino ){
 	int Dir = BuscarTerminoN( NroTermino );
     if( Dir == Nulo ){} // Exception No existe ese número de terminos;
 
     return Pol->Recupera( Pol->Siguiente( Dir ) );
 }
 
-void CPoliListaVector::Evalua( int X ){
+void CPoliListaSMem::Evalua( int X ){
 	int resultado = 0;
 	if( NumeroTerminos() == 0 ) return ShowMessage("No existe ningun término");
 
@@ -128,7 +128,7 @@ void CPoliListaVector::Evalua( int X ){
 	ShowMessage( Message );
 }
 
-void CPoliListaVector::MostrarPolinomio(){
+void CPoliListaSMem::MostrarPolinomio(){
 	if( NumeroTerminos() == 0 ) return ShowMessage("No existe ningun término");
 
 	AnsiString Polinomio;

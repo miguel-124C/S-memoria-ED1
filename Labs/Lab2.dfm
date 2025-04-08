@@ -1,7 +1,7 @@
-object Form2: TForm2
+object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'SMemoria'
+  Caption = 'Form3'
   ClientHeight = 817
   ClientWidth = 1205
   Color = clBtnFace
@@ -13,19 +13,6 @@ object Form2: TForm2
   Font.Style = []
   PixelsPerInch = 96
   TextHeight = 15
-  object LTitlePolinomio: TLabel
-    Left = 8
-    Top = 432
-    Width = 222
-    Height = 32
-    Caption = 'Polinomio no creado'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -24
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
-  end
   object BtnCreateMemoria: TButton
     Left = 8
     Top = 8
@@ -94,7 +81,7 @@ object Form2: TForm2
   end
   object BtnCreatePolinomio: TButton
     Left = 8
-    Top = 480
+    Top = 272
     Width = 97
     Height = 41
     Caption = 'Crear Polinomio'
@@ -103,7 +90,7 @@ object Form2: TForm2
   end
   object BtnPonerTermino: TButton
     Left = 8
-    Top = 527
+    Top = 319
     Width = 97
     Height = 41
     Caption = 'Poner Termino'
@@ -112,7 +99,7 @@ object Form2: TForm2
   end
   object BtnMostrarPolinomio: TButton
     Left = 111
-    Top = 480
+    Top = 272
     Width = 97
     Height = 41
     Caption = 'Mostrar'
@@ -121,15 +108,16 @@ object Form2: TForm2
   end
   object BtnDerivarPolinomio: TButton
     Left = 8
-    Top = 574
+    Top = 366
     Width = 97
     Height = 41
     Caption = 'Derivar'
     TabOrder = 11
+    OnClick = BtnDerivarPolinomioClick
   end
   object ECoef: TEdit
     Left = 111
-    Top = 527
+    Top = 319
     Width = 98
     Height = 23
     HelpType = htKeyword
@@ -137,81 +125,9 @@ object Form2: TForm2
   end
   object EExp: TEdit
     Left = 215
-    Top = 527
+    Top = 319
     Width = 98
     Height = 23
     TabOrder = 13
-  end
-  object BtnEvaluaPolinomio: TButton
-    Left = 8
-    Top = 621
-    Width = 97
-    Height = 36
-    Caption = 'Evalua'
-    TabOrder = 14
-    OnClick = BtnEvaluaPolinomioClick
-  end
-  object EIncognita: TEdit
-    Left = 111
-    Top = 627
-    Width = 97
-    Height = 23
-    TabOrder = 15
-  end
-  object BtnChangeType: TButton
-    Left = 319
-    Top = 425
-    Width = 113
-    Height = 39
-    Caption = 'Cambiar Polinomio'
-    TabOrder = 16
-    Visible = False
-    OnClick = BtnChangeTypeClick
-  end
-  object BtnCreateLista: TButton
-    Left = 8
-    Top = 248
-    Width = 97
-    Height = 33
-    Caption = 'Crear Lista'
-    TabOrder = 17
-  end
-  object BtnInsertInicio: TButton
-    Left = 8
-    Top = 287
-    Width = 97
-    Height = 33
-    Caption = 'Insertar Inicio'
-    TabOrder = 18
-  end
-  object EInsertInicio: TEdit
-    Left = 111
-    Top = 292
-    Width = 98
-    Height = 23
-    TabOrder = 19
-  end
-  object EInsertFin: TEdit
-    Left = 111
-    Top = 331
-    Width = 98
-    Height = 23
-    TabOrder = 20
-  end
-  object BtnInsertFinal: TButton
-    Left = 8
-    Top = 326
-    Width = 97
-    Height = 33
-    Caption = 'Insertar Final'
-    TabOrder = 21
-  end
-  object BtnMostrarLista: TButton
-    Left = 8
-    Top = 365
-    Width = 97
-    Height = 33
-    Caption = 'Mostrar Lista'
-    TabOrder = 22
   end
 end

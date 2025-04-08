@@ -1,21 +1,21 @@
 //---------------------------------------------------------------------------
 
-#ifndef CPoliListaVectorH
-#define CPoliListaVectorH
+#ifndef CPoliListaSMemH
+#define CPoliListaSMemH
 //---------------------------------------------------------------------------
 
-#include "../Clases/Listas/CListaVector.h"
+#include "../Clases/Listas/CListaSMemoria.h"
 #include "../Interfaces/ITDAPolinomio.h"
 
-class CPoliListaVector : public ITDAPolinomio{
+class CPoliListaSMem : public ITDAPolinomio{
 private:
 	int BuscarExponente( int Exp );
 	int BuscarTerminoN( int I );
 public:
 
 	TCanvas* Canvas;
-	CListaVector* Pol;
-	CPoliListaVector( CListaVector* pol, TCanvas* canvas ){
+	CListaSMemoria* Pol;
+	CPoliListaSMem( CListaSMemoria* pol, TCanvas* canvas ){
 		Canvas = canvas;
 		Pol = pol;
 	}
