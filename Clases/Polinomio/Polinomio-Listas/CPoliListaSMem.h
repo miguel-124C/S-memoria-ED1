@@ -18,6 +18,7 @@ public:
 	CPoliListaSMem( CListaSMemoria* pol, TCanvas* canvas ){
 		Canvas = canvas;
 		Pol = pol;
+        Pol->Longitud = 0;
 	}
     static const int Nulo = 0;
 
