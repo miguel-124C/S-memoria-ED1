@@ -4,10 +4,9 @@
 #include <tchar.h>
 //---------------------------------------------------------------------------
 USEFORM("Forms\FSMemoria.cpp", Form1);
+USEFORM("Labs\Lab1.cpp", Form5);
 USEFORM("Forms\FPolinomios.cpp", Form2);
 USEFORM("Forms\FListas.cpp", Form4);
-USEFORM("Forms\FPunteros.cpp", Form3);
-USEFORM("Labs\Lab1.cpp", Form5);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -16,7 +15,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-        UnicodeString seleccion;
+		UnicodeString seleccion;
 		if (
 			InputQuery("Seleccionar Formulario",
 			"Ingresa el número del formulario:\n1: SMemoria\n2: Polinomios\n3: Listas\n4: Conjuntos",
@@ -36,9 +35,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 					break;
 				case 3:
 					Application->CreateForm(__classid(TForm4), &Form4);
-					break;
-				case 4:
-					Application->CreateForm(__classid(TForm3), &Form3);
 					break;
 				default: ShowMessage("Opción no válida. Cerrando programa."); return 0;
 			}

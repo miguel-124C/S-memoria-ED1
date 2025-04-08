@@ -106,6 +106,7 @@ object Form2: TForm2
     Height = 41
     Caption = 'Poner Termino'
     TabOrder = 9
+    OnClick = BtnPonerTerminoClick
   end
   object BtnMostrarPolinomio: TButton
     Left = 111

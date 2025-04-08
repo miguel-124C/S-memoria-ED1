@@ -93,8 +93,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>ProjectED1</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -179,6 +179,10 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="Clases\Conjunto\CConjSMemoria.cpp">
+            <DependentOn>Clases\Conjunto\CConjSMemoria.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Clases\CSMemoria.cpp">
             <DependentOn>Clases\CSMemoria.h</DependentOn>
             <BuildOrder>5</BuildOrder>
@@ -223,12 +227,6 @@
             <DependentOn>Forms\FPolinomios.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Forms\FPunteros.cpp">
-            <Form>Form3</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Forms\FPunteros.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
         <CppCompile Include="Forms\FSMemoria.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
@@ -240,6 +238,9 @@
         </None>
         <None Include="Interfaces\ISMemoria.h">
             <BuildOrder>3</BuildOrder>
+        </None>
+        <None Include="Interfaces\ITDAConjuntos.h">
+            <BuildOrder>18</BuildOrder>
         </None>
         <None Include="Interfaces\ITDALista.h">
             <BuildOrder>8</BuildOrder>
@@ -260,11 +261,10 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <FormResources Include="Forms\FPunteros.dfm"/>
-        <FormResources Include="Forms\FPolinomios.dfm"/>
-        <FormResources Include="Labs\Lab1.dfm"/>
-        <FormResources Include="Forms\FListas.dfm"/>
         <FormResources Include="Forms\FSMemoria.dfm"/>
+        <FormResources Include="Labs\Lab1.dfm"/>
+        <FormResources Include="Forms\FPolinomios.dfm"/>
+        <FormResources Include="Forms\FListas.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
