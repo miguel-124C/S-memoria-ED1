@@ -18,12 +18,12 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		UnicodeString seleccion;
 		if (
 			InputQuery("Seleccionar Formulario",
-			"Ingresa el número del formulario:\n1: SMemoria\n2: Polinomios\n3: Listas\n4: Conjuntos",
+			"Ingresa el nï¿½mero del formulario:\n1: SMemoria\n2: Polinomios\n3: Listas\n4: Conjuntos",
 			seleccion
 			)
 		)
 		{
-			int opcion = seleccion.ToIntDef(0); // Convierte el texto a número, si falla devuelve 0
+			int opcion = seleccion.ToIntDef(0); // Convierte el texto a nï¿½mero, si falla devuelve 0
 
 			switch (opcion)
 			{
@@ -36,14 +36,14 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 				case 3:
 					Application->CreateForm(__classid(TForm4), &Form4);
 					break;
-				default: ShowMessage("Opción no válida. Cerrando programa."); return 0;
+				default: ShowMessage("Opciï¿½n no vï¿½lida. Cerrando programa."); return 0;
 			}
 
 			Application->Run();
 		}
 		else
 		{
-			ShowMessage("No se seleccionó ningún formulario. Cerrando programa.");
+			ShowMessage("No se seleccionï¿½ ningï¿½n formulario. Cerrando programa.");
 		}
 		Application->Run();
 	}
