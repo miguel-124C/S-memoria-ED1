@@ -33,7 +33,8 @@ public:
 	int Exponente( int NroTermino ) override;
     void Evalua( int X ) override;
 
-    void MostrarPolinomio() override;
+	void MostrarPolinomio() override;
+	void VaciarPolinomio() override;
 };
 
 #endif

@@ -98,3 +98,7 @@ void CPoliVector::MostrarPolinomio(){
     Canvas->Font->Size = 18;
 	Canvas->TextOut(50, 700, "Polinomio: " +  Polinomio);
 }
+
+void CPoliVector::VaciarPolinomio(){
+
+}

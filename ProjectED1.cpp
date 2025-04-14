@@ -8,6 +8,7 @@ USEFORM("Labs\Lab2.cpp", Form3);
 USEFORM("Labs\Lab1.cpp", Form5);
 USEFORM("Forms\FPolinomios.cpp", Form2);
 USEFORM("Forms\FListas.cpp", Form4);
+USEFORM("Labs\TestParcial.cpp", Form6);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -44,7 +45,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //			ShowMessage("No se seleccion� ning�n formulario. Cerrando programa.");
 //		}
 
-		Application->CreateForm(__classid(TForm3), &Form3);
+//		Application->CreateForm(__classid(TForm3), &Form3);
+		Application->CreateForm(__classid(TForm6), &Form6);
 		Application->Run();
 	}
 	catch (Exception &exception)

@@ -11,7 +11,6 @@ object Form3: TForm3
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  PixelsPerInch = 96
   TextHeight = 15
   object BtnCreateMemoria: TButton
     Left = 8

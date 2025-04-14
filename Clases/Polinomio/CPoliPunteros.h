@@ -37,6 +37,7 @@ public:
 	void Evalua( int X ) override;
 
 	void MostrarPolinomio() override;
+  void VaciarPolinomio() override;
 };
 
 #endif

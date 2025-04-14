@@ -54,7 +54,6 @@ void CSMemoria::DeleteEspacio(int dir) {
 
 	MEM[x].link = getLibre();
 	setLibre( dir );
-    ShowMessage("Espacio en memoria liberado");
 }
 
 void CSMemoria::PonerDato(int dir, AnsiString cadena_id, TipoDatoMem valor) {

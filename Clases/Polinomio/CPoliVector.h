@@ -32,6 +32,7 @@ public:
 	void Evalua( int X ) override;
 
 	void MostrarPolinomio() override;
+  void VaciarPolinomio() override;
 
 	int GetLugarExp( int Exp ){
     	if( !(Exp >= 0 && Exp <= Grado()) ) return -1;

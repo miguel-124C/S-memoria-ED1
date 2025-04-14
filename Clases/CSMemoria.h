@@ -34,9 +34,9 @@ public:
 
 	// Tamaño de cada campo
 	int WidthDir  = 40;
-	int WidthDato = 300;
-	int WidthId   = 270;
-	int WidthLink = 60;
+	int WidthDato = 200;
+	int WidthId   = 150;
+	int WidthLink = 50;
 
 	int HeightFields = 35;
 

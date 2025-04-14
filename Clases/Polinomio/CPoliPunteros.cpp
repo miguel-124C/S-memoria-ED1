@@ -149,7 +149,7 @@ void CPoliPuntero::Evalua( int X ){
 
 	NodoPoli* Dir = PtrPoli;
 
-	if( Dir == nullptr ) return ShowMessage("No existe ningun término");
+	if( Dir == nullptr ) return ShowMessage("No existe ningun tï¿½rmino");
 
 	while( Dir != nullptr){
 		int Coef = Dir->Coef;
@@ -167,7 +167,7 @@ void CPoliPuntero::Evalua( int X ){
 void CPoliPuntero::MostrarPolinomio(){
 	NodoPoli* Dir = PtrPoli;
 
-	if( Dir == nullptr ) return ShowMessage("No existe ningun término");
+	if( Dir == nullptr ) return ShowMessage("No existe ningun tï¿½rmino");
 
 	AnsiString Polinomio;
 	while( Dir != nullptr){
@@ -183,4 +183,7 @@ void CPoliPuntero::MostrarPolinomio(){
 
     Canvas->Font->Size = 18;
 	Canvas->TextOut(50, 700, "Polinomio: " +  Polinomio);
+}
+
+void CPoliPuntero::VaciarPolinomio(){
 }

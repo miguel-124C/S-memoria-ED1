@@ -13,7 +13,9 @@ CPoliSMemoria::CPoliSMemoria( ISMemoria<DirPolSMem>* memoria, TCanvas* canvas ){
 
 int CPoliSMemoria::BuscarExponente( int Exp ){
 	DirPolSMem Dir = PtrPoli;
-	if( Dir == Memoria->Nulo() ){} // exception no existe ese termino
+	if( Dir == Memoria->Nulo() ){
+        return Memoria->Nulo();
+	} // exception no existe ese termino
 
 	DirPolSMem DirExp = Memoria->Nulo();
 
@@ -104,12 +106,22 @@ void CPoliSMemoria::AsignarCoeficiente( int Coef, int Exp ){
 
 	Memoria->PonerDato(Dir, "Coef", Coef);
 	if( Coef == 0 ){
-        Memoria->DeleteEspacio( Dir );
+		int DirNuevoSig = Memoria->ObtieneDato( Dir, "Sig" );
+		if( Dir == PtrPoli ){
+			PtrPoli = DirNuevoSig;
+		}else{
+			int DirAnterior = BuscarDirTerminoAnterior( Dir );
+			Memoria->PonerDato( DirAnterior, "Sig", DirNuevoSig );
+		}
+
+		Memoria->DeleteEspacio( Dir );
 		NroTerminos--;
 	}
 }
 
 void CPoliSMemoria::PonerTermino( int Coef, int Exp ){
+    if( Coef == 0 ) return;
+
 	DirPolSMem Dir = BuscarExponente( Exp );
 	if( Dir == Memoria->Nulo() ){
 		int Aux = Memoria->NewEspacio("Coef,Exp,Sig");
@@ -187,4 +199,24 @@ void CPoliSMemoria::MostrarPolinomio(){
 
     Canvas->Font->Size = 18;
 	Canvas->TextOut(50, 700, "Polinomio: " +  Polinomio);
+}
+
+void CPoliSMemoria::VaciarPolinomio( ){
+	DirPolSMem Dir = PtrPoli;
+    int DirDelete;
+
+	if( Dir == Memoria->Nulo() ){} // exception no existe ese termino
+
+	while( Dir != Memoria->Nulo()){
+	    DirDelete = Dir;
+		Memoria->PonerDato( Dir, "Coef", 0 );
+		Memoria->PonerDato( Dir, "Exp", 0 );
+
+		Dir = Memoria->ObtieneDato(Dir, "Sig");
+
+		Memoria->PonerDato( DirDelete, "Sig", 0 );
+        Memoria->DeleteEspacio( DirDelete );
+	}
+
+    Crea();
 }
