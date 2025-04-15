@@ -17,7 +17,10 @@ void CListaSMemoria::Crear(){
 }
 
 int CListaSMemoria::Fin(){
-	if( Vacia() ) return -1; // llamar a exception listavacia;
+	if( Vacia() ){ // llamar a exception listavacia;
+		ShowMessage("Lista vacia");
+		return -1;
+	}
 
 	TDListMem x = PtrElementos;
 	TDListMem PtrFin;
@@ -37,15 +40,29 @@ int CListaSMemoria::Primero(){
 }
 
 int CListaSMemoria::Siguiente( int direccion ){
-	if( Vacia() ) return 0; // Llamar exception ListaVacia
-	if( direccion == Fin() ) return 0; // Llamar exception DireccionErr
+    if( direccion == -1 ) return -1;
+
+	if( Vacia() ) {// Llamar exception ListaVacia
+//		ShowMessage("Lista vacia");
+		return -1;
+	}
+	if( direccion == Fin() ) {// Llamar exception DireccionErr
+//        ShowMessage("No hay mas datos");
+		return -1;
+	}
 
 	return Memoria->ObtieneDato( direccion, "Sig" );
 }
 
 int CListaSMemoria::Anterior( int direccion ){
-	if( Vacia() ) return 0; // Llamar exception ListaVacia
-	if( direccion == Primero() ) return 0; // Llamar exception DireccionPrimeraErr
+	if( Vacia() ) {// Llamar exception ListaVacia
+//		ShowMessage("Lista vacia");
+		return -1;
+	}
+	if( direccion == Primero() ) {// Llamar exception DireccionErr
+//        ShowMessage("No hay mas datos");
+		return -1;
+	}
 
 	TDListMem x = PtrElementos;
 	TDListMem anterior = -1;
@@ -56,12 +73,10 @@ int CListaSMemoria::Anterior( int direccion ){
 		anterior = x;
 		x = Memoria->ObtieneDato( x, "Sig"  );
 	}
-
-	return direccion--;
 }
 
 TDListMem CListaSMemoria::Recupera( int direccion ){
-	if( Vacia() ) return 0; // Llamar exception ListaVacia
+	if( Vacia() ) return -1; // Llamar exception ListaVacia
 
     return Memoria->ObtieneDato( direccion, "Elemento"  );
 }
@@ -80,7 +95,7 @@ void CListaSMemoria::Inserta( int direccion, TDListMem elemento ){
 			return;
 		}
 
-		Longitud = Longitud + 1;
+        Longitud = Longitud + 1;
 		if( direccion == Primero() ){
 			Memoria->PonerDato(x, "Sig", direccion);
             PtrElementos = x;
@@ -88,10 +103,12 @@ void CListaSMemoria::Inserta( int direccion, TDListMem elemento ){
 			anterior = Anterior( direccion );
 			Memoria->PonerDato(anterior, "Sig", x);
 			Memoria->PonerDato(x, "Sig", direccion);
-        }
+		}
+
+        return;
 	}
 
-    return; // llamar a exception existeespaciomemoria
+    return ShowMessage("No hay espacio o direccion invalida"); // llamar a exception existeespaciomemoria
 }
 
 void CListaSMemoria::Inserta_primero( TDListMem elemento ){
@@ -104,7 +121,7 @@ void CListaSMemoria::Inserta_primero( TDListMem elemento ){
 		Longitud = Longitud + 1;
 		PtrElementos = x;
 	}else{
-        return; // llamar a exception existeespaciomemoria
+        return ShowMessage("No hay espacio"); // llamar a exception existeespaciomemoria
 	}
 }
 
@@ -123,12 +140,12 @@ void CListaSMemoria::Inserta_ultimo( TDListMem elemento ){
 
 		Longitud = Longitud + 1;
 	}else{
-        return; // llamar a exception existeespaciomemoria
+        return ShowMessage("No existe espacio"); // llamar a exception existeespaciomemoria
 	}
 }
 
 void CListaSMemoria::Suprime( int direccion ){
-	if( Vacia() ) return; // llamar a exception listavacia
+	if( Vacia() ) return ShowMessage("Lista vacia"); // llamar a exception listavacia
 
 	int x;
 	int anterior;
@@ -136,17 +153,19 @@ void CListaSMemoria::Suprime( int direccion ){
 		x = PtrElementos;
 		PtrElementos = Memoria->ObtieneDato(PtrElementos, "Sig");
 		// Liberar espacio de memoria x
+        Memoria->DeleteEspacio( x );
 	}else{
 		anterior = Anterior( direccion );
 		Memoria->PonerDato(anterior,"Sig", Siguiente(direccion));
-        // Liberar espacio de memoria direccion
+		// Liberar espacio de memoria direccion
+        Memoria->DeleteEspacio( direccion );
 	}
 
     Longitud = Longitud - 1;
 }
 
 void CListaSMemoria::Modifica( int direccion, TDListMem elemento){
-	if( Vacia() ) return; // llamar a exception listavacia
+	if( Vacia() ) return ShowMessage("Lista vacia"); // llamar a exception listavacia
 	Memoria->PonerDato(direccion,"Elemento", elemento);
 }
 

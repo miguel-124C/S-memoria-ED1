@@ -46,12 +46,16 @@ public:		// User declarations
 	// Simulador de memoria
 	ISMemoria<int>* SMEMORIA;
 	bool MemoriaCreada = false;
+	ISMemoria<int>* CopySMemoria;
 
 	CListaSMemoria* TDALISTA;
 	bool ListaCreada = false;
+    CListaSMemoria* CopyLista;
 
 	ITDAPolinomio* TDAPOLINOMIO;
 	bool PolinomioCreado = false;
+
+    ITDAPolinomio* CopiarPolinomio( ITDAPolinomio* original );
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

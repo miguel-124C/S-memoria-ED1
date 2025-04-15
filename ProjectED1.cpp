@@ -45,8 +45,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //			ShowMessage("No se seleccion� ning�n formulario. Cerrando programa.");
 //		}
 
-//		Application->CreateForm(__classid(TForm3), &Form3);
-		Application->CreateForm(__classid(TForm6), &Form6);
+		Application->CreateForm(__classid(TForm3), &Form3);
+//		Application->CreateForm(__classid(TForm6), &Form6);
 		Application->Run();
 	}
 	catch (Exception &exception)

@@ -11,7 +11,7 @@
 
 #include "./Interfaces/ISMemoria.h"
 // Lista
-//#include "./Clases/Listas/CListaSMemoria.h"
+#include "./Clases/Listas/CListaSMemoria.h"
 #include "./Interfaces/ITDAPolinomio.h"
 
 struct Polinomio {

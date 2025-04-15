@@ -119,7 +119,29 @@ void __fastcall TForm3::BtnMostrarPolinomioClick(TObject *Sender)
 
 void __fastcall TForm3::BtnDerivarPolinomioClick(TObject *Sender)
 {
-    TDAPOLINOMIO->Derivada( TDAPOLINOMIO, TDAPOLINOMIO );
+	ITDAPolinomio* PoliAux = CopiarPolinomio(TDAPOLINOMIO);
+	TDAPOLINOMIO->VaciarPolinomio();
+
+	TDAPOLINOMIO->Derivada( PoliAux, TDAPOLINOMIO );
+
+	delete( PoliAux );
+	delete( CopySMemoria );
+	delete( CopyLista );
 }
 //---------------------------------------------------------------------------
+ITDAPolinomio* TForm3::CopiarPolinomio( ITDAPolinomio* original ){
+	CopySMemoria = new CSMemoria( 0, Canvas );
+	CopyLista = new CListaSMemoria( CopySMemoria, Canvas );
 
+	ITDAPolinomio* copia = new CPoliListaSMem( CopyLista, Canvas );
+
+	copia->Crea();
+
+	for (int i = 1; i <= original->NumeroTerminos(); i++) {
+		int exp = original->Exponente(i);
+		int coef = original->Coeficiente(exp);
+		copia->PonerTermino(coef, exp);
+	}
+
+	return copia;
+}

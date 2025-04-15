@@ -12,7 +12,7 @@ int CPoliListaSMem::BuscarExponente( int Exp ){
 
 	int DirExp = Nulo;
 
-	while( Dir <= NumeroTerminos() && DirExp == Nulo ){
+	while( Dir != Nulo && DirExp == Nulo ){
 		if( Pol->Recupera( Dir ) == Exp ){
 			DirExp = Dir;
 		}
@@ -27,11 +27,11 @@ int CPoliListaSMem::BuscarTerminoN( int I ){
 	int Dir = Pol->Primero();
 	int NumeroTermino = 0;
 
-	if( Dir == Nulo ){} // Exception Polinomio no tiene T�rminos;
+	if( Dir == Nulo ){ return Nulo; } // Exception Polinomio no tiene T�rminos;
 
 	int DirTermino = Nulo;
 
-	while( Dir <= NumeroTerminos() && DirTermino == Nulo ){
+	while( Dir != Nulo && DirTermino == Nulo ){
 		NumeroTermino++;
 
 		if( NumeroTermino == I ){
@@ -50,7 +50,7 @@ bool CPoliListaSMem::EsCero(){ return Pol->Vacia(); }
 int CPoliListaSMem::Grado(){
 	int Dir = Pol->Siguiente( Pol->Primero() );
 
-	if( Dir != Nulo ){} // Exception Polinomio no tiene T�rminos;
+	if( Dir == Nulo ){ return Nulo; } // Exception Polinomio no tiene T�rminos;
 
 	int MaxGrado = Pol->Recupera(Dir);
 
@@ -67,14 +67,14 @@ int CPoliListaSMem::Grado(){
 
 int CPoliListaSMem::Coeficiente( int Exp ){
 	int Dir = BuscarExponente( Exp );
-	if( Dir == Nulo ){} // Exception Polinomio no tiene T�rminos;
+	if( Dir == Nulo ){ return Nulo; } // Exception Polinomio no tiene T�rminos;
 
     return Pol->Recupera( Pol->Anterior( Dir ) );
 }
 
 void CPoliListaSMem::AsignarCoeficiente( int Coef, int Exp ){
     int Dir = BuscarExponente( Exp );
-	if( Dir == Nulo ){} // Exception Polinomio no tiene T�rminos;
+	if( Dir == Nulo ){ return; } // Exception Polinomio no tiene T�rminos;
 
 	int DirCoef = Pol->Anterior( Dir );
 	Pol->Modifica( DirCoef, Coef );
@@ -99,7 +99,7 @@ void CPoliListaSMem::PonerTermino( int Coef, int Exp ){
 	}else{
 		if( Coef != 0 ){
 			Pol->Inserta_ultimo( Exp );
-            Pol->Inserta( Pol->Fin(), Coef );
+			Pol->Inserta( Pol->Fin(), Coef );
 		}
 	}
 }
@@ -108,7 +108,7 @@ int CPoliListaSMem::NumeroTerminos(){ return Pol->Longitud / 2; }
 
 int CPoliListaSMem::Exponente( int NroTermino ){
 	int Dir = BuscarTerminoN( NroTermino );
-    if( Dir == Nulo ){} // Exception No existe ese número de terminos;
+    if( Dir == Nulo ){ return Nulo; } // Exception No existe ese número de terminos;
 
     return Pol->Recupera( Pol->Siguiente( Dir ) );
 }
@@ -145,4 +145,19 @@ void CPoliListaSMem::MostrarPolinomio(){
 }
 
 void CPoliListaSMem::VaciarPolinomio(){
+	int Dir = Pol->PtrElementos;
+    int DirDelete;
+
+	if( Dir == -1 ){ return; } // exception no existe ese termino
+
+	while( Dir != -1){
+		DirDelete = Dir;
+		Pol->Modifica( Dir, 0 );
+
+		Dir = Pol->Siguiente(Dir);
+
+		Pol->Suprime(DirDelete);
+	}
+
+	Crea();
 }

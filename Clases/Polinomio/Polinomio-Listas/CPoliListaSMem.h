@@ -18,9 +18,9 @@ public:
 	CPoliListaSMem( CListaSMemoria* pol, TCanvas* canvas ){
 		Canvas = canvas;
 		Pol = pol;
-        Pol->Longitud = 0;
+		Pol->Crear();
 	}
-    static const int Nulo = 0;
+    static const int Nulo = -1;
 
 	void Crea() override;
 	bool EsCero() override;

@@ -13,7 +13,7 @@ TForm6 *Form6;
 #include "./Clases/CSMemoria.h"
 #include "./Clases/Polinomio/CPoliSMemoria.h"
 
-//#include "./Clases/Polinomio/Polinomio-Listas/CPoliListaSMem.h"
+#include "./Clases/Polinomio/Polinomio-Listas/CPoliListaSMem.h"
 
 //---------------------------------------------------------------------------
 __fastcall TForm6::TForm6(TComponent* Owner)
