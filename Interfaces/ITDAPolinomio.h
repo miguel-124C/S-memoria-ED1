@@ -64,6 +64,21 @@ public:
 
 	void Multiplicar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		// Desarrollar
+		VaciarPolinomio();
+        for( int i = 1; i <= P1->NumeroTerminos(); i++ ){
+			int ExpP1 = P1->Exponente( i );
+			int CoefP1 = P1->Coeficiente( ExpP1 );
+
+			for( int j = 1; j <= P2->NumeroTerminos(); j++ ){
+				int ExpP2 = P2->Exponente( j );
+				int CoefP2 = P2->Coeficiente( ExpP2 );
+
+				int Coef = CoefP1 * CoefP2;
+				int Exp = ExpP1 + ExpP2;
+
+				PonerTermino( Coef, Exp );
+			}
+		}
 	}
 
 	void Derivada( ITDAPolinomio* P1, ITDAPolinomio* P2 ){

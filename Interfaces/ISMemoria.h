@@ -83,6 +83,19 @@ public:
         return id;
 	}
 
+    bool SePuedeReservarEspacio( int cantidadIds ){
+		if( EspacioDisponible() == 0 ){
+			ShowMessage("Memoria llena, no hay espacios disponibles");
+			return false;
+		}
+		if( cantidadIds > EspacioDisponible() ){
+			ShowMessage( "No hay espacio para reservar " + IntToStr(cantidadIds) + " espacio/s" );
+			return false;
+		}
+
+		return true;
+	}
+
 	virtual ~ISMemoria() {}  // Destructor virtual
 };
 

@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "TestParcial.h"
+#include "P1Simulacro.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -16,6 +16,11 @@ TForm6 *Form6;
 #include "./Clases/Polinomio/Polinomio-Listas/CPoliListaSMem.h"
 
 //---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//-------------------Implementado con Polinomio SMemoria---------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+
 __fastcall TForm6::TForm6(TComponent* Owner)
 	: TForm(Owner)
 {
@@ -24,7 +29,6 @@ __fastcall TForm6::TForm6(TComponent* Owner)
 void __fastcall TForm6::BtnCreateMemoriaClick(TObject *Sender)
 {
 	SMEMORIA = new CSMemoria( 0, Canvas );
-	TDALISTA = new CListaSMemoria( SMEMORIA, Canvas );
 	MemoriaCreada = true;
 }
 //---------------------------------------------------------------------------
@@ -66,6 +70,20 @@ void __fastcall TForm6::BtnMostrarMemoriaClick(TObject *Sender)
 	SMEMORIA->MostrarMemoria();
 }
 //---------------------------------------------------------------------------
+ITDAPolinomio* TForm6::CreatePolinomio( bool ListaOrMem ){
+	ITDAPolinomio* Polinomio = nullptr;
+
+	if( ListaOrMem ){
+        TDALISTA = new CListaSMemoria( SMEMORIA, Canvas );
+		Polinomio = new CPoliListaSMem( TDALISTA, Canvas );
+	}else{
+		Polinomio = new CPoliSMemoria( SMEMORIA, Canvas );
+		Polinomio->Crea();
+	}
+
+    return Polinomio;
+}
+
 void __fastcall TForm6::BtnCreatePoliClick(TObject *Sender)
 {
 	if(!MemoriaCreada) return ShowMessage("No se creo ninguna memoria");
@@ -73,10 +91,10 @@ void __fastcall TForm6::BtnCreatePoliClick(TObject *Sender)
 	AnsiString nombrePolinomio = ECreateNombrePoli->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
-	TDAPOLINOMIO = new CPoliSMemoria( SMEMORIA, Canvas );
-	TDAPOLINOMIO->Crea();
+	TDAPOLINOMIO = CreatePolinomio( true );
+	if(TDAPOLINOMIO == nullptr){ return ShowMessage("No se pudo crear el polinomio"); }
 
-	AddPolinomio( nombrePolinomio, TDAPOLINOMIO );
+	AddPolinomio( nombrePolinomio, TDAPOLINOMIO, true );
 
 	PolinomioCreado = true;
 
@@ -128,14 +146,22 @@ void __fastcall TForm6::BtnDerivadaClick(TObject *Sender)
 
 	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
 	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
+    bool isLista = IsLista( nombrePolinomio );
 
-	ITDAPolinomio* PoliAux = CopiarPolinomio(TDAPOLINOMIO);
+	ITDAPolinomio* PoliAux;
+	if(isLista){
+		PoliAux = CopiarPolinomioLista(TDAPOLINOMIO);
+	}else{
+		PoliAux = CopiarPolinomio(TDAPOLINOMIO);
+    }
+
 	TDAPOLINOMIO->VaciarPolinomio();
-
 	TDAPOLINOMIO->Derivada( PoliAux, TDAPOLINOMIO );
 
 	delete( PoliAux );
 	delete( CopySMemoria );
+
+	if(isLista) delete( CopyLista );
 }
 //---------------------------------------------------------------------------
 
@@ -153,6 +179,24 @@ ITDAPolinomio* TForm6::CopiarPolinomio( ITDAPolinomio* original ){
 
 	return copia;
 }
+
+ITDAPolinomio* TForm6::CopiarPolinomioLista( ITDAPolinomio* original ){
+	CopySMemoria = new CSMemoria( 0, Canvas );
+	CopyLista = new CListaSMemoria( CopySMemoria, Canvas );
+
+	ITDAPolinomio* copia = new CPoliListaSMem( CopyLista, Canvas );
+
+	copia->Crea();
+
+	for (int i = 1; i <= original->NumeroTerminos(); i++) {
+		int exp = original->Exponente(i);
+		int coef = original->Coeficiente(exp);
+		copia->PonerTermino(coef, exp);
+	}
+
+	return copia;
+}
+
 void __fastcall TForm6::BtnGraficarClick(TObject *Sender)
 {
 	if(!PolinomioCreado) return ShowMessage("Ningun polinomio creado");
@@ -180,3 +224,29 @@ void __fastcall TForm6::BtnGraficarClick(TObject *Sender)
 	TDAPOLINOMIO->GraficarPolinomio( TDAPOLINOMIO, LimI, LimSup, Variable );
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm6::BtnMultiplicaClick(TObject *Sender)
+{
+	if(!PolinomioCreado) return ShowMessage("Ningun polinomio creado");
+
+	AnsiString A = EPoliA->Text.Trim();
+	if(A.IsEmpty()) return ShowMessage("Ingrese un polinomio A");
+
+	AnsiString B = EPoliB->Text.Trim();
+	if( B.IsEmpty() ) return ShowMessage("Ingrese un polinomio B");
+
+	AnsiString Result = EPoliResultMulti->Text.Trim();
+	if( Result.IsEmpty() ) return ShowMessage("Ingrese un polinomio donde guardar");
+
+	ITDAPolinomio* PoliA = GetPolinomio( A );
+	if( PoliA == nullptr ) return ShowMessage("Polinomio " + A + " no encontrado");
+	ITDAPolinomio* PoliB = GetPolinomio( B );
+    if( PoliB == nullptr ) return ShowMessage("Polinomio " + B + " no encontrado");
+
+	ITDAPolinomio* PoliC = GetPolinomio( Result );
+	if( PoliC == nullptr ) return ShowMessage("Polinomio " + Result + " no encontrado");
+
+    PoliC->Multiplicar( PoliA, PoliB );
+}
+//---------------------------------------------------------------------------
+

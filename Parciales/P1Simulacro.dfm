@@ -176,4 +176,38 @@ object Form6: TForm6
     Height = 23
     TabOrder = 20
   end
+  object BtnMultiplica: TButton
+    Left = 24
+    Top = 624
+    Width = 137
+    Height = 33
+    Caption = 'Multiplicar'
+    TabOrder = 21
+    Visible = False
+    OnClick = BtnMultiplicaClick
+  end
+  object EPoliA: TEdit
+    Left = 240
+    Top = 629
+    Width = 49
+    Height = 23
+    TabOrder = 22
+    Visible = False
+  end
+  object EPoliB: TEdit
+    Left = 304
+    Top = 629
+    Width = 49
+    Height = 23
+    TabOrder = 23
+    Visible = False
+  end
+  object EPoliResultMulti: TEdit
+    Left = 176
+    Top = 629
+    Width = 49
+    Height = 23
+    TabOrder = 24
+    Visible = False
+  end
 end

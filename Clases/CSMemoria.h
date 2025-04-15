@@ -22,8 +22,6 @@ public:
 
 	void MostrarMemoria() override;
 
-
-
     //--------------------------------------------------------------------------
 	// CANVAS Memoria
 	// Propiedades para dibujar con canvas

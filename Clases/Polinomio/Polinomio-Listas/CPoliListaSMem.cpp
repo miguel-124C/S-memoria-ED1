@@ -141,7 +141,7 @@ void CPoliListaSMem::MostrarPolinomio(){
 	}
 
     Canvas->Font->Size = 18;
-	Canvas->TextOut(50, 500, "Polinomio: " +  Polinomio);
+	Canvas->TextOut(50, 700, "Polinomio: " +  Polinomio);
 }
 
 void CPoliListaSMem::VaciarPolinomio(){

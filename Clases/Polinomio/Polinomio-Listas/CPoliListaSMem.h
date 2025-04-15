@@ -13,12 +13,11 @@ private:
 	int BuscarTerminoN( int I );
 public:
 
-	TCanvas* Canvas;
 	CListaSMemoria* Pol;
 	CPoliListaSMem( CListaSMemoria* pol, TCanvas* canvas ){
-		Canvas = canvas;
 		Pol = pol;
 		Pol->Crear();
+        setCanvas( canvas );
 	}
     static const int Nulo = -1;
 
@@ -34,6 +33,8 @@ public:
 
 	void MostrarPolinomio() override;
 	void VaciarPolinomio() override;
+
+
 };
 
 #endif

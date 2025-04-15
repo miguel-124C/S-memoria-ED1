@@ -83,6 +83,8 @@ TDListMem CListaSMemoria::Recupera( int direccion ){
 
 void CListaSMemoria::Inserta( int direccion, TDListMem elemento ){
 	// X tendria direccion de memoria si existe espacio
+	if( !Memoria->SePuedeReservarEspacio(2) ) return;
+
 	int x = Memoria->NewEspacio("Elemento,Sig");
 	int anterior;
 	if( x != -1 ){
@@ -113,6 +115,7 @@ void CListaSMemoria::Inserta( int direccion, TDListMem elemento ){
 
 void CListaSMemoria::Inserta_primero( TDListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
+	if( !Memoria->SePuedeReservarEspacio(2) ) return; // 2 ya que son Elemento, Sig
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
 	if( x != -1){
@@ -127,6 +130,7 @@ void CListaSMemoria::Inserta_primero( TDListMem elemento ){
 
 void CListaSMemoria::Inserta_ultimo( TDListMem elemento ){
 	// x tendria direcion de memoria si existe espacio
+    if( !Memoria->SePuedeReservarEspacio(2) ) return; // 2 ya que son Elemento, Sig
 	int x = Memoria->NewEspacio("Elemento,Sig");
 
 	if( x != -1){

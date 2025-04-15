@@ -93,8 +93,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>ProjectED1</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -259,10 +259,10 @@
             <DependentOn>Labs\Lab2.h</DependentOn>
             <BuildOrder>20</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Labs\TestParcial.cpp">
+        <CppCompile Include="Parciales\P1Simulacro.cpp">
             <Form>Form6</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Labs\TestParcial.h</DependentOn>
+            <DependentOn>Parciales\P1Simulacro.h</DependentOn>
             <BuildOrder>21</BuildOrder>
         </CppCompile>
         <CppCompile Include="ProjectED1.cpp">
@@ -277,7 +277,7 @@
             <BuildOrder>22</BuildOrder>
         </CppCompile>
         <FormResources Include="Labs\Lab1.dfm"/>
-        <FormResources Include="Labs\TestParcial.dfm"/>
+        <FormResources Include="Parciales\P1Simulacro.dfm"/>
         <FormResources Include="Labs\Lab2.dfm"/>
         <FormResources Include="Forms\FSMemoria.dfm"/>
         <FormResources Include="Forms\FPolinomios.dfm"/>

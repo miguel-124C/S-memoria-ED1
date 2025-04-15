@@ -21,15 +21,7 @@ CSMemoria::CSMemoria( TipoDatoMem valueDefault, TCanvas* canvas ) {
 
 int CSMemoria::NewEspacio(AnsiString cadena) {
 	int cantidadIds = NumeroIds( cadena );
-
-    if( EspacioDisponible() == 0 ){
-		ShowMessage("Memoria llena, no hay espacios disponibles");
-		return Nulo();
-	}
-	if( cantidadIds > EspacioDisponible() ){
-		ShowMessage( "No hay espacio para reservar " + IntToStr(cantidadIds) + " espacio/s" );
-		return Nulo();
-	}
+	if( !SePuedeReservarEspacio( cantidadIds ) ) return Nulo();
 
 	int DIR = getLibre();
 	int D 	= getLibre();
