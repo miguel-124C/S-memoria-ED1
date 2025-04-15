@@ -67,7 +67,7 @@ object Form6: TForm6
   end
   object BtnGraficar: TButton
     Left = 24
-    Top = 416
+    Top = 411
     Width = 137
     Height = 33
     Caption = 'Gr'#225'ficar Polinomio'

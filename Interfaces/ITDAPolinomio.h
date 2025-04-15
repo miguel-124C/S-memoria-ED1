@@ -103,6 +103,8 @@ public:
 	}
 
 	void GraficarPolinomio( ITDAPolinomio* P, float x1, float x2, float s ){
+        if(P->NumeroTerminos() == 0) return ShowMessage("No hay terminos");
+
 		if( x1 > x2 ) return ShowMessage("El limite inferior no puede ser mayor");
         if( x1 == x2 ) return ShowMessage("Rangos iguales");
 
