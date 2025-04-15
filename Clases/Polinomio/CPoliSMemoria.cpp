@@ -8,7 +8,7 @@
 
 CPoliSMemoria::CPoliSMemoria( ISMemoria<DirPolSMem>* memoria, TCanvas* canvas ){
 	Memoria = memoria;
-    Canvas = canvas;
+    setCanvas( canvas );
 }
 
 int CPoliSMemoria::BuscarExponente( int Exp ){
@@ -190,7 +190,7 @@ void CPoliSMemoria::MostrarPolinomio(){
 		int Coef = Memoria->ObtieneDato(Dir, "Coef");
 		int Exp = Memoria->ObtieneDato(Dir, "Exp");
 
-		AnsiString signo = Coef > 0 ? "+" : "-";
+		AnsiString signo = Coef > 0 ? "+" : "";
 
 		Polinomio += signo + IntToStr(Coef) + "X^" + IntToStr(Exp);
 

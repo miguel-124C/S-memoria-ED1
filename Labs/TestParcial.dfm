@@ -72,6 +72,7 @@ object Form6: TForm6
     Height = 33
     Caption = 'Gr'#225'ficar Polinomio'
     TabOrder = 6
+    OnClick = BtnGraficarClick
   end
   object BtnMostrarMemoria: TButton
     Left = 24
@@ -95,84 +96,84 @@ object Form6: TForm6
     Left = 176
     Top = 88
     Width = 129
-    Height = 33
+    Height = 23
     TabOrder = 9
   end
   object ENombreLiberarEspacio: TEdit
     Left = 176
     Top = 141
     Width = 129
-    Height = 28
+    Height = 23
     TabOrder = 10
   end
   object ECreateNombrePoli: TEdit
     Left = 176
     Top = 217
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 11
   end
   object ENombrePoliPonerTerm: TEdit
     Left = 176
     Top = 264
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 12
   end
   object ECoef: TEdit
     Left = 240
     Top = 264
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 13
   end
   object EExp: TEdit
     Left = 304
     Top = 264
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 14
   end
   object ENombrePoliDerivada: TEdit
     Left = 176
     Top = 312
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 15
   end
-  object Edit8: TEdit
+  object EGrafNombrePoli: TEdit
     Left = 176
     Top = 416
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 16
   end
-  object Edit9: TEdit
+  object ELimiteInf: TEdit
     Left = 240
     Top = 416
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 17
   end
-  object Edit10: TEdit
+  object ELimiteSup: TEdit
     Left = 304
     Top = 416
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 18
   end
   object ENombrePoliMostrar: TEdit
     Left = 176
     Top = 559
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 19
   end
-  object Edit1: TEdit
+  object EVariable: TEdit
     Left = 368
     Top = 416
     Width = 49
-    Height = 33
+    Height = 23
     TabOrder = 20
   end
 end

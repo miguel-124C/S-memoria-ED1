@@ -4,8 +4,13 @@
 #include <vcl.h>
 #include <math.h>
 
+#include "./Utils/PlanoCartesiano.h"
+
 class ITDAPolinomio{
 public:
+
+    PlanoCartesiano* plano;
+    TCanvas* Canvas;
 
 	virtual void Crea() = 0;
 	virtual bool EsCero() = 0;
@@ -20,8 +25,14 @@ public:
 	virtual void MostrarPolinomio() = 0;
 	virtual void VaciarPolinomio() = 0;
 
+	void setCanvas( TCanvas* canvas ){
+		this->Canvas = canvas;
+        plano = new PlanoCartesiano( canvas );
+	}
+
 	void Sumar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		//Poner polinomio en 0
+		VaciarPolinomio();
 		for( int i = 1; i <= P1->NumeroTerminos(); i++ ){
 			int exp = P1->Exponente( i );
 			int coef = P1->Coeficiente( exp );
@@ -37,6 +48,7 @@ public:
 
 	void Restar( ITDAPolinomio* P1, ITDAPolinomio* P2 ){
 		//Poner polinomio en 0
+        VaciarPolinomio();
 		for( int i = 1; i <= P1->NumeroTerminos(); i++ ){
 			int exp = P1->Exponente( i );
 			int coef = P1->Coeficiente( exp );
@@ -75,8 +87,32 @@ public:
 		ShowMessage( Integral );
 	}
 
-	void GraficarPolinomio( ITDAPolinomio* P int x1, int x2, int x ){
+	void GraficarPolinomio( ITDAPolinomio* P, float x1, float x2, float s ){
+		if( x1 > x2 ) return ShowMessage("El limite inferior no puede ser mayor");
+        if( x1 == x2 ) return ShowMessage("Rangos iguales");
 
+        plano->GraficaPlano( x1, x2 );
+
+		float y = 0;
+		int cantPuntos = 0;
+		float coordx1; float coordy1;
+//      for( float x = plano->limitePlano * -1; x <= plano->limitePlano; x += s ){
+		for( float x = x1; x <= x2; x += s ){
+			for( int i = 1; i <= P->NumeroTerminos(); i++ ){
+				int exp = P->Exponente( i );
+				int coef = P->Coeficiente( exp );
+
+				y += coef * pow( x, exp );
+			}
+
+			cantPuntos++;
+			if( cantPuntos > 1 ){
+				plano->GraficaLinea( coordx1, coordy1, x, y );
+			}
+
+			coordx1 = x; coordy1 = y;
+			y = 0;
+		}
 	}
 
 	virtual ~ITDAPolinomio() {}  // Destructor virtual

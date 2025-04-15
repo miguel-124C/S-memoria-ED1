@@ -15,8 +15,6 @@ private:
 	DirPolSMem BuscarDirTerminoAnterior( int DirActual );
 public:
 
-	TCanvas* Canvas;
-
 	CPoliSMemoria( ISMemoria<DirPolSMem>* memoria, TCanvas* canvas );
 
 	DirPolSMem PtrPoli; // Puntero, siempre apunta al primer elemento

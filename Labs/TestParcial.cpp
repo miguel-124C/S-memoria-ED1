@@ -24,7 +24,7 @@ __fastcall TForm6::TForm6(TComponent* Owner)
 void __fastcall TForm6::BtnCreateMemoriaClick(TObject *Sender)
 {
 	SMEMORIA = new CSMemoria( 0, Canvas );
-//	TDALISTA = new CListaSMemoria( SMEMORIA, Canvas );
+	TDALISTA = new CListaSMemoria( SMEMORIA, Canvas );
 	MemoriaCreada = true;
 }
 //---------------------------------------------------------------------------
@@ -75,6 +75,9 @@ void __fastcall TForm6::BtnCreatePoliClick(TObject *Sender)
 
 	TDAPOLINOMIO = new CPoliSMemoria( SMEMORIA, Canvas );
 	TDAPOLINOMIO->Crea();
+
+	AddPolinomio( nombrePolinomio, TDAPOLINOMIO );
+
 	PolinomioCreado = true;
 
 	ECreateNombrePoli->Text = "";
@@ -87,10 +90,11 @@ void __fastcall TForm6::BtnMostrarPoliClick(TObject *Sender)
 	AnsiString nombrePolinomio = ENombrePoliMostrar->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
+	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
+
 	Repaint();
 	TDAPOLINOMIO->MostrarPolinomio();
-
-//	ENombrePoliMostrar->Text = "";
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm6::BtnPonerTerminoClick(TObject *Sender)
@@ -106,11 +110,13 @@ void __fastcall TForm6::BtnPonerTerminoClick(TObject *Sender)
 	AnsiString exp = EExp->Text.Trim();
 	if( exp.IsEmpty() ) return ShowMessage("Ingrese un valor en Exponente");
 
+	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
+
 	int Coef = StrToInt(coef);
 	int Exp  = StrToInt(exp);
 	TDAPOLINOMIO->PonerTermino( Coef, Exp );
 
-//    ENombrePoliPonerTerm->Text = "";
 	ECoef->Text = "";
 	EExp->Text  = "";
 }
@@ -120,14 +126,16 @@ void __fastcall TForm6::BtnDerivadaClick(TObject *Sender)
 	AnsiString nombrePolinomio = ENombrePoliDerivada->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
+	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
+
 	ITDAPolinomio* PoliAux = CopiarPolinomio(TDAPOLINOMIO);
-    TDAPOLINOMIO->VaciarPolinomio();
-	//new CPoliSMemoria( SMEMORIA, Canvas )
+	TDAPOLINOMIO->VaciarPolinomio();
+
 	TDAPOLINOMIO->Derivada( PoliAux, TDAPOLINOMIO );
 
 	delete( PoliAux );
 	delete( CopySMemoria );
-//    ENombrePoliDerivada->Text = "";
 }
 //---------------------------------------------------------------------------
 
@@ -145,3 +153,30 @@ ITDAPolinomio* TForm6::CopiarPolinomio( ITDAPolinomio* original ){
 
 	return copia;
 }
+void __fastcall TForm6::BtnGraficarClick(TObject *Sender)
+{
+	if(!PolinomioCreado) return ShowMessage("Ningun polinomio creado");
+
+	AnsiString nombrePolinomio = EGrafNombrePoli->Text.Trim();
+	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
+
+	AnsiString limiteInf = ELimiteInf->Text.Trim();
+	if( limiteInf.IsEmpty() ) return ShowMessage("Ingrese un limite inferior");
+
+	AnsiString limiteSup = ELimiteSup->Text.Trim();
+	if( limiteSup.IsEmpty() ) return ShowMessage("Ingrese un limite superior");
+
+	AnsiString variable = EVariable->Text.Trim();
+	if( variable.IsEmpty() ) return ShowMessage("Ingrese una variable");
+
+	float LimI = StrToFloat( limiteInf );
+	float LimSup = StrToFloat( limiteSup );
+	float Variable = StrToFloat( variable );
+
+   	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
+
+    Repaint();
+	TDAPOLINOMIO->GraficarPolinomio( TDAPOLINOMIO, LimI, LimSup, Variable );
+}
+//---------------------------------------------------------------------------

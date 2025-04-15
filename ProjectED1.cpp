@@ -4,11 +4,11 @@
 #include <tchar.h>
 //---------------------------------------------------------------------------
 USEFORM("Forms\FSMemoria.cpp", Form1);
+USEFORM("Labs\TestParcial.cpp", Form6);
 USEFORM("Labs\Lab2.cpp", Form3);
 USEFORM("Labs\Lab1.cpp", Form5);
 USEFORM("Forms\FPolinomios.cpp", Form2);
 USEFORM("Forms\FListas.cpp", Form4);
-USEFORM("Labs\TestParcial.cpp", Form6);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
