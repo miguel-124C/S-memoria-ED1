@@ -1,10 +1,12 @@
-#ifndef ITDAPolinomio_H
+﻿#ifndef ITDAPolinomio_H
 #define ITDAPolinomio_H
 
 #include <vcl.h>
 #include <math.h>
 
 #include "./Utils/PlanoCartesiano.h"
+
+class ListPolinomio;    // Forward‑declaración
 
 class ITDAPolinomio{
 public:

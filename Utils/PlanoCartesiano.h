@@ -2,6 +2,7 @@
 
 #ifndef PlanoCartesianoH
 #define PlanoCartesianoH
+
 //---------------------------------------------------------------------------
 
 class PlanoCartesiano {

@@ -272,6 +272,10 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="Utils\ListPolinomio.cpp">
+            <DependentOn>Utils\ListPolinomio.h</DependentOn>
+            <BuildOrder>23</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Utils\PlanoCartesiano.cpp">
             <DependentOn>Utils\PlanoCartesiano.h</DependentOn>
             <BuildOrder>22</BuildOrder>

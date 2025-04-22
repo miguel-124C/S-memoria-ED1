@@ -91,10 +91,10 @@ void __fastcall TForm6::BtnCreatePoliClick(TObject *Sender)
 	AnsiString nombrePolinomio = ECreateNombrePoli->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
-	TDAPOLINOMIO = CreatePolinomio( true );
+	TDAPOLINOMIO = CreatePolinomio( false );
 	if(TDAPOLINOMIO == nullptr){ return ShowMessage("No se pudo crear el polinomio"); }
 
-	AddPolinomio( nombrePolinomio, TDAPOLINOMIO, true );
+	Polinomios->AddPolinomio( nombrePolinomio, TDAPOLINOMIO, true );
 
 	PolinomioCreado = true;
 
@@ -108,7 +108,7 @@ void __fastcall TForm6::BtnMostrarPoliClick(TObject *Sender)
 	AnsiString nombrePolinomio = ENombrePoliMostrar->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
-	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	TDAPOLINOMIO = Polinomios->GetPolinomio( nombrePolinomio );
 	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
 
 	Repaint();
@@ -128,7 +128,7 @@ void __fastcall TForm6::BtnPonerTerminoClick(TObject *Sender)
 	AnsiString exp = EExp->Text.Trim();
 	if( exp.IsEmpty() ) return ShowMessage("Ingrese un valor en Exponente");
 
-	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	TDAPOLINOMIO = Polinomios->GetPolinomio( nombrePolinomio );
 	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
 
 	int Coef = StrToInt(coef);
@@ -144,9 +144,9 @@ void __fastcall TForm6::BtnDerivadaClick(TObject *Sender)
 	AnsiString nombrePolinomio = ENombrePoliDerivada->Text.Trim();
 	if(nombrePolinomio.IsEmpty()) return ShowMessage("Ingrese un nombre a su polinomio");
 
-	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+	TDAPOLINOMIO = Polinomios->GetPolinomio( nombrePolinomio );
 	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
-    bool isLista = IsLista( nombrePolinomio );
+    bool isLista = Polinomios->IsLista( nombrePolinomio );
 
 	ITDAPolinomio* PoliAux;
 	if(isLista){
@@ -217,14 +217,36 @@ void __fastcall TForm6::BtnGraficarClick(TObject *Sender)
 	float LimSup = StrToFloat( limiteSup );
 	float Variable = StrToFloat( variable );
 
-   	TDAPOLINOMIO = GetPolinomio( nombrePolinomio );
+   	TDAPOLINOMIO = Polinomios->GetPolinomio( nombrePolinomio );
 	if( TDAPOLINOMIO == nullptr ) return ShowMessage("Polinomio " + nombrePolinomio + " no encontrado");
 
     Repaint();
 	TDAPOLINOMIO->GraficarPolinomio( TDAPOLINOMIO, LimI, LimSup, Variable );
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm6::BtnGraficarTodosClick(TObject *Sender)
+{
+	if(!PolinomioCreado) return ShowMessage("Ningun polinomio creado");
 
+	AnsiString limiteInf = ELimiteInf->Text.Trim();
+	if( limiteInf.IsEmpty() ) return ShowMessage("Ingrese un limite inferior");
+
+	AnsiString limiteSup = ELimiteSup->Text.Trim();
+	if( limiteSup.IsEmpty() ) return ShowMessage("Ingrese un limite superior");
+
+	AnsiString variable = EVariable->Text.Trim();
+	if( variable.IsEmpty() ) return ShowMessage("Ingrese una variable");
+
+	float LimI = StrToFloat( limiteInf );
+	float LimSup = StrToFloat( limiteSup );
+	float Variable = StrToFloat( variable );
+
+	Polinomios->setCanvas( Canvas );
+
+    Repaint();
+	Polinomios->GraficarPolinomios( LimI, LimSup, Variable );
+}
+//---------------------------------------------------------------------------
 void __fastcall TForm6::BtnMultiplicaClick(TObject *Sender)
 {
 	if(!PolinomioCreado) return ShowMessage("Ningun polinomio creado");
@@ -238,15 +260,14 @@ void __fastcall TForm6::BtnMultiplicaClick(TObject *Sender)
 	AnsiString Result = EPoliResultMulti->Text.Trim();
 	if( Result.IsEmpty() ) return ShowMessage("Ingrese un polinomio donde guardar");
 
-	ITDAPolinomio* PoliA = GetPolinomio( A );
+	ITDAPolinomio* PoliA = Polinomios->GetPolinomio( A );
 	if( PoliA == nullptr ) return ShowMessage("Polinomio " + A + " no encontrado");
-	ITDAPolinomio* PoliB = GetPolinomio( B );
+	ITDAPolinomio* PoliB = Polinomios->GetPolinomio( B );
     if( PoliB == nullptr ) return ShowMessage("Polinomio " + B + " no encontrado");
 
-	ITDAPolinomio* PoliC = GetPolinomio( Result );
+	ITDAPolinomio* PoliC = Polinomios->GetPolinomio( Result );
 	if( PoliC == nullptr ) return ShowMessage("Polinomio " + Result + " no encontrado");
 
     PoliC->Multiplicar( PoliA, PoliB );
 }
 //---------------------------------------------------------------------------
-

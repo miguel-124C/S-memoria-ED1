@@ -210,4 +210,13 @@ object Form6: TForm6
     TabOrder = 24
     Visible = False
   end
+  object BtnGraficarTodos: TButton
+    Left = 240
+    Top = 362
+    Width = 137
+    Height = 33
+    Caption = 'Gr'#225'ficar Todos'
+    TabOrder = 25
+    OnClick = BtnGraficarTodosClick
+  end
 end
