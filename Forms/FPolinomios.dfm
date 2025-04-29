@@ -1,7 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'SMemoria'
+  Caption = 'Polinomios'
   ClientHeight = 817
   ClientWidth = 1205
   Color = clBtnFace
@@ -11,12 +11,11 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  PixelsPerInch = 96
   TextHeight = 15
   object LTitlePolinomio: TLabel
     Left = 8
     Top = 432
-    Width = 222
+    Width = 221
     Height = 32
     Caption = 'Polinomio no creado'
     Font.Charset = DEFAULT_CHARSET

@@ -4,11 +4,12 @@
 #include <tchar.h>
 //---------------------------------------------------------------------------
 USEFORM("Labs\Lab1.cpp", Form5);
-USEFORM("Parciales\P1Simulacro.cpp", Form6);
 USEFORM("Labs\Lab2.cpp", Form3);
-USEFORM("Forms\FSMemoria.cpp", Form1);
-USEFORM("Forms\FPolinomios.cpp", Form2);
+USEFORM("Parciales\P1Simulacro.cpp", Form6);
 USEFORM("Forms\FListas.cpp", Form4);
+USEFORM("Forms\FPolinomios.cpp", Form2);
+USEFORM("Forms\FSMemoria.cpp", Form1);
+USEFORM("Forms\FConjuntos.cpp", Form7);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -46,7 +47,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //		}
 
 		//
-		Application->CreateForm(__classid(TForm6), &Form6);
+//		Application->CreateForm(__classid(TForm6), &Form6);
+		Application->CreateForm(__classid(TForm7), &Form7);
 		Application->Run();
 	}
 	catch (Exception &exception)
