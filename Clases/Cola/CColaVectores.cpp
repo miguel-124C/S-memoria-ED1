@@ -12,15 +12,13 @@ void CColaVectores::Crear(){
 }
 
 bool CColaVectores::Vacia(){
-    return ( Ini > Fin );
+    return Ini > Fin;
 }
 
 void CColaVectores::Poner( int elemento ){
-	if( !Vacia() ){
-		if( Siguiente( Siguiente( Fin ) != Ini ) ){
-			Fin = Siguiente( Fin );
-			Vector[Fin] = elemento;
-		}
+	if( Fin < MAX ){
+		Fin++;
+		Vector[Fin] = elemento;
 	}else {
 		ShowMessage("El vector está vacio");
 	}
@@ -29,25 +27,10 @@ void CColaVectores::Poner( int elemento ){
 void CColaVectores::Sacar( int elemento ){
 	if( !Vacia() ){
 		elemento = Vector[Ini];
-        Ini = Siguiente( Ini );
+        Ini++;
 	}else {
 		ShowMessage("El vector está vacio");
 	}
-}
-void CColaVectores::Desplazar( int indice ){
-    if( indice > Fin ) return;
-	if( !Vacia() ){
-		for( int i = indice; i <= Fin; i++ ){
-			int a = Vector[i + 1];
-            Vector[i + 1] = 0;
-            Vector[i] = a;
-		}
-	}
-}
-int CColaVectores::Siguiente( int direccion ){
-	if( direccion == MAX ) return 1;
-
-    return direccion + 1;
 }
 
 int CColaVectores::Primero(){
@@ -60,5 +43,17 @@ int CColaVectores::Primero(){
 }
 
 void CColaVectores::MostrarCola(){
+	for( int i = Ini; i <= Fin; i++ ){
+    	int x2 = X1 + WidthField;
+        int y2 = Y1 + HeightField;
+		canvas->Brush->Color = (TColor)0xffffff;
+		canvas->Rectangle(X1, Y1, x2, y2);
 
+		canvas->Font->Size = 16;
+		canvas->TextOut( X1 + 5, Y1 + 5, Vector[i] );
+
+		X1 += WidthField;
+	}
+
+	X1 = 50;
 }

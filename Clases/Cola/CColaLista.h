@@ -16,7 +16,7 @@ public:
     CListaSMemoria* Lista;
 
 	CColaLista( CListaSMemoria* ListaMem, TCanvas* canvas ){
-		Canvas = canvas;
+		setCanvas( canvas );
 		this->Lista = ListaMem;
 	}
 

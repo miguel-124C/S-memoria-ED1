@@ -1,23 +1,24 @@
 //---------------------------------------------------------------------------
 
-#ifndef CColaMemH
-#define CColaMemH
+#ifndef CColaVectorV2H
+#define CColaVectorV2H
 //---------------------------------------------------------------------------
 #include "./Interfaces/ITDACola.h"
-#include "./Interfaces/ISMemoria.h"
 
-class CColaMem : public ITDACola<int> {
+class CColaVectorV2 : public ITDACola<int> {
 private:
+	static int const MAX = 100;
 public:
+
+	int Vector[MAX];
 	int Ini;
 	int Fin;
 
-    ISMemoria<int>* Mem;
-
-	CColaMem( ISMemoria<int>* Mem, TCanvas* canvas ){
-		this->Mem = Mem;
-		setCanvas(canvas);
+	CColaVectorV2( TCanvas* canvas ){
+		setCanvas( canvas );
 	}
+
+    void Desplazar( int indice );
 
 	void Crear() override;
 	bool Vacia() override;

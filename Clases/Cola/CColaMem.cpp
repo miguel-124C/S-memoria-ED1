@@ -23,7 +23,7 @@ bool CColaMem::Vacia(){
 }
 
 void CColaMem::Poner( int elemento ){
-	int aux = Mem->NewEspacio("Elemento");
+	int aux = Mem->NewEspacio("Elemento,Sig");
 	if( aux == -1 ) return ShowMessage("Error");
 
 	Mem->PonerDato( aux, "Elemento", elemento );
@@ -58,5 +58,23 @@ int CColaMem::Primero(){
 }
 
 void CColaMem::MostrarCola(){
+    int x = Ini;
 
+	while( x != -1 ){
+		int Elemento = Mem->ObtieneDato( x, "Elemento" );
+
+        int x2 = X1 + WidthField;
+		int y2 = Y1 + HeightField;
+		canvas->Brush->Color = (TColor)0xffffff;
+		canvas->Rectangle(X1, Y1, x2, y2);
+
+		canvas->Font->Size = 16;
+		canvas->TextOut( X1 + 5, Y1 + 5, Elemento );
+
+		X1 += WidthField;
+
+		x = Mem->ObtieneDato( x, "Sig" );
+	}
+
+	X1 = 50;
 }

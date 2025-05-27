@@ -15,12 +15,12 @@ bool CColaLista::Vacia(){
 }
 
 void CColaLista::Poner( TElementoCola elemento ){
-	Lista->Inserta( Lista->Primero(), elemento );
+	Lista->Inserta_ultimo(elemento);
 }
 
 void CColaLista::Sacar( TElementoCola elemento ){
-	Lista->Recupera( Lista->Fin() );
-    Lista->Suprime( Lista->Fin() );
+	Lista->Recupera( Lista->Primero() );
+    Lista->Suprime( Lista->Primero() );
 }
 
 TElementoCola CColaLista::Primero(){
@@ -29,5 +29,25 @@ TElementoCola CColaLista::Primero(){
 }
 
 void CColaLista::MostrarCola(){
-	
+	if( Vacia() ) return ShowMessage("Lista Vacia");
+
+	int x = Lista->PtrElementos;
+
+	while( x != -1 ){
+		int Elemento = Lista->Memoria->ObtieneDato( x, "Elemento" );
+
+        int x2 = X1 + WidthField;
+		int y2 = Y1 + HeightField;
+		canvas->Brush->Color = (TColor)0xffffff;
+		canvas->Rectangle(X1, Y1, x2, y2);
+
+		canvas->Font->Size = 16;
+		canvas->TextOut( X1 + 5, Y1 + 5, Elemento );
+
+		X1 += WidthField;
+
+		x = Lista->Memoria->ObtieneDato( x, "Sig" );
+	}
+
+	X1 = 50;
 }
