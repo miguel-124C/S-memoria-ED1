@@ -190,6 +190,14 @@
             <DependentOn>Clases\Cola\CColaVectores.h</DependentOn>
             <BuildOrder>27</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Clases\Cola\CColaVectorV2.cpp">
+            <DependentOn>Clases\Cola\CColaVectorV2.h</DependentOn>
+            <BuildOrder>31</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\Cola\CColaVectorV3.cpp">
+            <DependentOn>Clases\Cola\CColaVectorV3.h</DependentOn>
+            <BuildOrder>32</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Clases\Conjunto\CConjSMemoria.cpp">
             <DependentOn>Clases\Conjunto\CConjSMemoria.h</DependentOn>
             <BuildOrder>19</BuildOrder>
