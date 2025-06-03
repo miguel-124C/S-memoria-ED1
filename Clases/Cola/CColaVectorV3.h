@@ -28,6 +28,10 @@ public:
 
 	void MostrarCola() override;
 
+	int getMax(){
+        return MAX;
+	}
+
 };
 
 #endif

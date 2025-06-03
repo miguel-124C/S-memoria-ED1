@@ -18,7 +18,7 @@ public:
 		setCanvas( canvas );
 	}
 
-    void Desplazar( int indice );
+	void Desplazar( int indice );
 
 	void Crear() override;
 	bool Vacia() override;
@@ -27,6 +27,10 @@ public:
 	int Primero() override;
 
 	void MostrarCola() override;
+
+	int getMax(){
+		return MAX;
+	}
 
 };
 

@@ -93,8 +93,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Clases\Cola\;Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Clases\Cola\;Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Clases\DiCola\;Clases\Cola\;Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Clases\DiCola\;Clases\Cola\;Parciales\;Utils\;Clases\Conjunto\;Labs\;Forms\;Clases\Polinomio\;Clases\Polinomio\Polinomio-Listas\;Clases\Listas\;Clases\;Interfaces\;..\..\..\4to semestre\ED1\ProyectoED1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>ProjectED1</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -206,6 +206,18 @@
             <DependentOn>Clases\CSMemoria.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Clases\DiCola\CDiColaSMem.cpp">
+            <DependentOn>Clases\DiCola\CDiColaSMem.h</DependentOn>
+            <BuildOrder>36</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\DiCola\CDiColaV2.cpp">
+            <DependentOn>Clases\DiCola\CDiColaV2.h</DependentOn>
+            <BuildOrder>34</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Clases\DiCola\CDiColaV3.cpp">
+            <DependentOn>Clases\DiCola\CDiColaV3.h</DependentOn>
+            <BuildOrder>35</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Clases\Listas\CListaPuntero.cpp">
             <DependentOn>Clases\Listas\CListaPuntero.h</DependentOn>
             <BuildOrder>8</BuildOrder>
@@ -276,6 +288,9 @@
         <None Include="Interfaces\ITDAConjuntos.h">
             <BuildOrder>18</BuildOrder>
         </None>
+        <None Include="Interfaces\ITDADiCola.h">
+            <BuildOrder>33</BuildOrder>
+        </None>
         <None Include="Interfaces\ITDALista.h">
             <BuildOrder>8</BuildOrder>
         </None>
@@ -321,15 +336,15 @@
             <DependentOn>Utils\PlanoCartesiano.h</DependentOn>
             <BuildOrder>22</BuildOrder>
         </CppCompile>
+        <FormResources Include="Forms\FPolinomios.dfm"/>
+        <FormResources Include="Forms\FSMemoria.dfm"/>
         <FormResources Include="Labs\Lab1.dfm"/>
         <FormResources Include="Labs\Lab2.dfm"/>
-        <FormResources Include="Parciales\P1Simulacro.dfm"/>
-        <FormResources Include="Forms\FSMemoria.dfm"/>
-        <FormResources Include="Forms\FConjuntos.dfm"/>
-        <FormResources Include="Forms\FListas.dfm"/>
-        <FormResources Include="Forms\FPolinomios.dfm"/>
-        <FormResources Include="Forms\FCola.dfm"/>
         <FormResources Include="Labs\LabCola.dfm"/>
+        <FormResources Include="Parciales\P1Simulacro.dfm"/>
+        <FormResources Include="Forms\FListas.dfm"/>
+        <FormResources Include="Forms\FCola.dfm"/>
+        <FormResources Include="Forms\FConjuntos.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
